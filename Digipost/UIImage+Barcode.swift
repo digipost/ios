@@ -17,7 +17,7 @@
 extension UIImage {
     
     convenience init?(barcode: String, barcodeType: String) {
-        var type = barcodeType == "code-128" ? "CICode128BarcodeGenerator" : barcodeType
+        let type = barcodeType == "code-128" ? "CICode128BarcodeGenerator" : barcodeType
         let data = barcode.data(using: .ascii)
         guard let filter = CIFilter(name:type) else {
             return nil
