@@ -16,27 +16,16 @@
 
 import Foundation
 
-class POSEvent : POSMetadataObject {
+@objc class POSBarcode : NSObject{
+    var value = ""
+    var type = ""
+    var text = ""
+    var label = ""
     
-    var subTitle = ""
-    var descriptionText = ""
-    var place = ""
-    var streetAddress = ""
-    var postalCode = ""
-    var city = ""
-    var address = ""
-    var timeframes = [POSTimeframe]()
-    var barcodes = [POSBarcode]()
-    var info = [POSMetadataInfo]()
-    var infoTitle1 = ""
-    var infoText1 = ""
-    var infoTitle2 = ""
-    var infoText2 = ""
-    var infoTitle3 = ""
-    var infoText3 = ""
-    var links = [POSEventLink]()
-    
-    init() {
-        super.init(type: POSMetadata.TYPE.EVENT)
+    init(value:String?, type: String?, text: String?, label: String?){
+        self.value = value != nil ? value as! String : ""
+        self.type = type != nil ?  type as! String : ""
+        self.text = text != nil ? text as! String : ""
+        self.label = label != nil ? label as! String : ""
     }
 }

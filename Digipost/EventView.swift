@@ -82,6 +82,17 @@ import EventKit
         extraTextViewHeight += positiveHeightAdjustment(text: timeframes, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         setupCalendars()
         
+        
+        for barcode in event.barcodes {
+            view.barcodeTitle.text = barcode.label
+            view.barcodeDescription.text = barcode.text
+            if barcode.type.lowercased() == "code-39" {
+                view.barcode.image = Code39.code39Image(from: barcode.value, width: view.barcode.frame.width, height: view.barcode.frame.height)
+            }else{
+                view.barcode.image = UIImage(barcode: barcode.value, barcodeType: barcode.type)
+            }
+        }
+        
         let infoTexts = NSMutableAttributedString()
         for info in event.info{
             infoTexts.append(NSAttributedString(string: info.title+"\n", attributes: boldAttribute))
@@ -90,11 +101,22 @@ import EventKit
         view.infoText.attributedText = infoTexts
         
         for link in event.links{
-            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 10))
-            button.setTitle(link.url, for: .normal)
-            button.setTitleColor(UIColor.blue, for: .normal)
-            button.addTarget(self, action: #selector(openEventLink), for: .touchUpInside)
-            view.linkContainer.addArrangedSubview(button)
+            let linkLabel = UILabel()
+            linkLabel.frame = CGRect(x:0, y:0, width:view.linkContainer.frame.width, height:20)
+            linkLabel.textColor = UIColor.black
+            linkLabel.textAlignment = NSTextAlignment.left
+            linkLabel.text = link.descriptionText
+            view.linkContainer.addArrangedSubview(linkLabel)
+            
+            let linkButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.linkContainer.frame.width, height: 20))
+            
+            linkButton.setTitle(link.url, for: .normal)
+            linkButton.backgroundColor = UIColor.red
+            linkButton.setTitleColor(UIColor.blue, for: .normal)
+            linkButton.addTarget(self, action: #selector(openEventLink), for: .touchUpInside)
+            view.linkContainer.addArrangedSubview(linkButton)
+            
+            view.linkContainer.sizeToFit()
         }
         
         extraTextViewHeight += positiveHeightAdjustment(text: infoTexts.mutableString as String, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)

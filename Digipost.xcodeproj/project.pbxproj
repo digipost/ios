@@ -217,6 +217,15 @@
 		F81D61F122EB273A00827289 /* POSEventLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F022EB273A00827289 /* POSEventLink.swift */; };
 		F81D61F222EB273A00827289 /* POSEventLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F022EB273A00827289 /* POSEventLink.swift */; };
 		F81D61F322EB273A00827289 /* POSEventLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F022EB273A00827289 /* POSEventLink.swift */; };
+		F81D61F522EEE9F000827289 /* POSBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F422EEE9F000827289 /* POSBarcode.swift */; };
+		F81D61F622EEE9F000827289 /* POSBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F422EEE9F000827289 /* POSBarcode.swift */; };
+		F81D61F722EEE9F000827289 /* POSBarcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F422EEE9F000827289 /* POSBarcode.swift */; };
+		F81D61F922EF0BC700827289 /* UIImage+Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F822EF0BC700827289 /* UIImage+Barcode.swift */; };
+		F81D61FA22EF0BC700827289 /* UIImage+Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F822EF0BC700827289 /* UIImage+Barcode.swift */; };
+		F81D61FB22EF0BC700827289 /* UIImage+Barcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F822EF0BC700827289 /* UIImage+Barcode.swift */; };
+		F81D61FD22EF106700827289 /* Code39.m in Sources */ = {isa = PBXBuildFile; fileRef = F81D61FC22EF106700827289 /* Code39.m */; };
+		F81D61FE22EF106700827289 /* Code39.m in Sources */ = {isa = PBXBuildFile; fileRef = F81D61FC22EF106700827289 /* Code39.m */; };
+		F81D61FF22EF106700827289 /* Code39.m in Sources */ = {isa = PBXBuildFile; fileRef = F81D61FC22EF106700827289 /* Code39.m */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F8416EA722A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
@@ -713,6 +722,10 @@
 		F81D61E722E9A2F900827289 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/EventView.strings; sourceTree = "<group>"; };
 		F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSMetadataInfo.swift; sourceTree = "<group>"; };
 		F81D61F022EB273A00827289 /* POSEventLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSEventLink.swift; sourceTree = "<group>"; };
+		F81D61F422EEE9F000827289 /* POSBarcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSBarcode.swift; sourceTree = "<group>"; };
+		F81D61F822EF0BC700827289 /* UIImage+Barcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Barcode.swift"; sourceTree = "<group>"; };
+		F81D61FC22EF106700827289 /* Code39.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Code39.m; sourceTree = "<group>"; };
+		F81D620022EF109C00827289 /* Code39.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Code39.h; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F836169C1DCB6F8A004DAD57 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Invoice.strings; sourceTree = "<group>"; };
@@ -1054,6 +1067,10 @@
 				F81D61C522E84A7F00827289 /* POSTimeframe.swift */,
 				F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */,
 				F81D61F022EB273A00827289 /* POSEventLink.swift */,
+				F81D61F422EEE9F000827289 /* POSBarcode.swift */,
+				F81D61F822EF0BC700827289 /* UIImage+Barcode.swift */,
+				F81D61FC22EF106700827289 /* Code39.m */,
+				F81D620022EF109C00827289 /* Code39.h */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -1780,8 +1797,10 @@
 				ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				EC669D581B1479D8004F97B6 /* NSString+Hmac.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
+				F81D61FD22EF106700827289 /* Code39.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
 				83D75F591858E5790013F8C9 /* POSFolder.m in Sources */,
+				F81D61F522EEE9F000827289 /* POSBarcode.swift in Sources */,
 				ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */,
 				F8BA4FFC218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				EC2B64631A66928D00AB6085 /* Dispatch.swift in Sources */,
@@ -1832,6 +1851,7 @@
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
 				F8D46F4022E6F3C0006A9788 /* EventView.swift in Sources */,
 				0B1520CF1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift in Sources */,
+				F81D61F922EF0BC700827289 /* UIImage+Barcode.swift in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
 				EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
@@ -1876,6 +1896,7 @@
 				F8BA4FFD218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				F81D61C322E8490C00827289 /* POSEvent.swift in Sources */,
 				9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */,
+				F81D61FE22EF106700827289 /* Code39.m in Sources */,
 				F8D46F4122E6F3C1006A9788 /* EventView.swift in Sources */,
 				F8A5593C21903DD300667F27 /* SettingsValidator.swift in Sources */,
 				F8BF1B182195BA1300A87C61 /* SecureViewController.swift in Sources */,
@@ -1884,6 +1905,8 @@
 				F81D61C722E84A7F00827289 /* POSTimeframe.swift in Sources */,
 				F8416EA822A7B69D00C92B03 /* OAuthToken.swift in Sources */,
 				9C30BB761E5B31E600444468 /* NSDate+Extensions.swift in Sources */,
+				F81D61FA22EF0BC700827289 /* UIImage+Barcode.swift in Sources */,
+				F81D61F622EEE9F000827289 /* POSBarcode.swift in Sources */,
 				F8A5594021904C2900667F27 /* SettingsTextField.swift in Sources */,
 				F8DEAF9C2178707200B267C0 /* ContactViewController.swift in Sources */,
 				9CDF87401E68180F003E73FB /* AppVersionManagerTests.swift in Sources */,
@@ -1960,8 +1983,10 @@
 				F8AE1C4F1CD374B40009B2F9 /* NSString+Hmac.m in Sources */,
 				F8AE1C501CD374B40009B2F9 /* main.m in Sources */,
 				F8AE1C511CD374B40009B2F9 /* SHCAppDelegate.m in Sources */,
+				F81D61FF22EF106700827289 /* Code39.m in Sources */,
 				F8AE1C531CD374B40009B2F9 /* POSFolder.m in Sources */,
 				F8AE1C541CD374B40009B2F9 /* NSString+Convenience.m in Sources */,
+				F81D61F722EEE9F000827289 /* POSBarcode.swift in Sources */,
 				F8BA4FFE218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				F8AE1C571CD374B40009B2F9 /* Dispatch.swift in Sources */,
 				F8AE1C591CD374B40009B2F9 /* UIRefreshControl+Additions.m in Sources */,
@@ -2012,6 +2037,7 @@
 				F8AE1C851CD374B40009B2F9 /* SHCBaseTableViewController.m in Sources */,
 				F8D46F4222E6F3C1006A9788 /* EventView.swift in Sources */,
 				F8AE1C861CD374B40009B2F9 /* AHKActionSheet+Convenience.m in Sources */,
+				F81D61FB22EF0BC700827289 /* UIImage+Barcode.swift in Sources */,
 				F8AE1C871CD374B40009B2F9 /* UIView+AutoLayout.m in Sources */,
 				F8AE1C881CD374B40009B2F9 /* POSUploadTableViewCell.m in Sources */,
 				F8AFAE8C1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */,

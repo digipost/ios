@@ -111,6 +111,10 @@ import Foundation
                 event.links.append(POSEventLink(descriptionText: link["description"] as! String, url: link["url"] as! String))
             }
         }
+        
+        if let barcode = metadata.json["barcode"] as? Dictionary<String, Any>{45346345
+            event.barcodes.append(POSBarcode(value: barcode["barcodeValue"] as? String , type: barcode["barcodeType"] as? String, text: barcode["barcodeText"] as? String, label: metadata.json["barcodeLabel"] as? String))
+        }
     
         return event
     }

@@ -14,29 +14,19 @@
 // limitations under the License.
 //
 
-import Foundation
-
-class POSEvent : POSMetadataObject {
+extension UIImage {
     
-    var subTitle = ""
-    var descriptionText = ""
-    var place = ""
-    var streetAddress = ""
-    var postalCode = ""
-    var city = ""
-    var address = ""
-    var timeframes = [POSTimeframe]()
-    var barcodes = [POSBarcode]()
-    var info = [POSMetadataInfo]()
-    var infoTitle1 = ""
-    var infoText1 = ""
-    var infoTitle2 = ""
-    var infoText2 = ""
-    var infoTitle3 = ""
-    var infoText3 = ""
-    var links = [POSEventLink]()
-    
-    init() {
-        super.init(type: POSMetadata.TYPE.EVENT)
+    convenience init?(barcode: String, barcodeType: String) {
+        var type = barcodeType == "code-128" ? "CICode128BarcodeGenerator" : barcodeType
+        let data = barcode.data(using: .ascii)
+        guard let filter = CIFilter(name:type) else {
+            return nil
+        }
+        filter.setValue(data, forKey: "inputMessage")
+        guard let ciImage = filter.outputImage else {
+            return nil
+        }
+        self.init(ciImage: ciImage)
     }
+    
 }
