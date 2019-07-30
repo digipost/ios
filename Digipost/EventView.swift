@@ -37,11 +37,10 @@ import EventKit
     @IBOutlet weak var bottomDivider: UIView!
     
     @IBOutlet weak var infoText: UILabel!
+    @IBOutlet weak var linkText: UITextView!
     
     @objc var parentViewController: POSLetterViewController? = nil
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
-    
-    @IBOutlet weak var linkContainer: UIStackView!
     
     var event: POSEvent = POSEvent()
     
@@ -70,10 +69,12 @@ import EventKit
         view.descriptionText.text = event.descriptionText
         var extraTextViewHeight = positiveHeightAdjustment(text: event.descriptionText, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         
+        //Address
         let placeAndAddress = event.place + "\n" + event.address
         view.place.attributedText = attributedString(text: placeAndAddress,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         extraTextViewHeight += positiveHeightAdjustment(text: placeAndAddress, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         
+        //Timeframes
         var timeframes = ""
         for timeframe in event.timeframes {
             timeframes += timeframe.startTime.dateOnly() + " - " + timeframe.startTime.timeOnly()+"\n"
@@ -83,7 +84,9 @@ import EventKit
         setupCalendars()
         
         
+        //Barcode
         for barcode in event.barcodes {
+
             view.barcodeTitle.text = barcode.label
             view.barcodeDescription.text = barcode.text
             if barcode.type.lowercased() == "code-39" {
@@ -93,6 +96,8 @@ import EventKit
             }
         }
         
+        
+        //Infotexts
         let infoTexts = NSMutableAttributedString()
         for info in event.info{
             infoTexts.append(NSAttributedString(string: info.title+"\n", attributes: boldAttribute))
@@ -100,25 +105,19 @@ import EventKit
         }
         view.infoText.attributedText = infoTexts
         
+        //Links
+        let attributedLinkText = NSMutableAttributedString()
         for link in event.links{
-            let linkLabel = UILabel()
-            linkLabel.frame = CGRect(x:0, y:0, width:view.linkContainer.frame.width, height:20)
-            linkLabel.textColor = UIColor.black
-            linkLabel.textAlignment = NSTextAlignment.left
-            linkLabel.text = link.descriptionText
-            view.linkContainer.addArrangedSubview(linkLabel)
+            attributedLinkText.append(NSAttributedString(string: link.descriptionText+"\n", attributes: boldAttribute))
             
-            let linkButton = UIButton(frame: CGRect(x: 0, y: 0, width: view.linkContainer.frame.width, height: 20))
+            let linkUrl = NSMutableAttributedString(string: link.url, attributes:[NSAttributedStringKey.link: URL(string: link.url)!, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 15)!])
             
-            linkButton.setTitle(link.url, for: .normal)
-            linkButton.backgroundColor = UIColor.red
-            linkButton.setTitleColor(UIColor.blue, for: .normal)
-            linkButton.addTarget(self, action: #selector(openEventLink), for: .touchUpInside)
-            view.linkContainer.addArrangedSubview(linkButton)
-            
-            view.linkContainer.sizeToFit()
+            attributedLinkText.append(linkUrl)
+            attributedLinkText.append(NSAttributedString(string:"\n\n"))
         }
+        view.linkText.attributedText = attributedLinkText
         
+        //adjusting height of metadataview
         extraTextViewHeight += positiveHeightAdjustment(text: infoTexts.mutableString as String, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.containerViewHeight.constant += extraTextViewHeight
         
