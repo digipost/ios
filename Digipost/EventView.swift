@@ -88,8 +88,9 @@ import EventKit
         for barcode in event.barcodes {
             view.barcodeTitle.text = barcode.label
             let attributedBarcodeDescription = NSMutableAttributedString()
-            attributedBarcodeDescription.append(NSAttributedString(string: barcode.value))
-            attributedBarcodeDescription.append(NSAttributedString(string: "\n"+barcode.text))
+            
+            attributedBarcodeDescription.append(NSAttributedString(string: barcode.value, attributes: regularAttribute))
+            attributedBarcodeDescription.append(NSAttributedString(string: "\n"+barcode.text, attributes: regularAttribute))
             view.barcodeDescription.attributedText = attributedBarcodeDescription
             if barcode.type.lowercased() == "code-39" {
                 view.barcode.image = Code39.code39Image(from: barcode.value, width: view.barcode.frame.width, height: view.barcode.frame.height)
@@ -103,7 +104,7 @@ import EventKit
         let infoTexts = NSMutableAttributedString()
         for info in event.info{
             infoTexts.append(NSAttributedString(string: info.title+"\n", attributes: boldAttribute))
-            infoTexts.append( NSAttributedString(string: info.text+"\n\n", attributes: regularAttribute))
+            infoTexts.append(NSAttributedString(string: info.text+"\n\n", attributes: regularAttribute))
         }
         view.infoText.attributedText = infoTexts
         
