@@ -3,7 +3,7 @@
 //  Code39Test
 //
 //  Created by Lin Patrick on 10/17/15.
-//
+// MIT https://github.com/bclin087/Simple-Code39-generator-for-iOS
 
 #import "Code39.h"
 
@@ -105,6 +105,7 @@
         fBarWidth = ([strEncode characterAtIndex:i] == '1' ? WidLength : NarrowLength);
         // drawing with black color
         if (i % 2 == 0) {
+            
             CGContextSetRGBStrokeColor(context, 0.0, 0.0, 0.0, 1.0);
             CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 1.0);
         }
