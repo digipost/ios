@@ -1,0 +1,42 @@
+
+/* Class = "UILabel"; text = "Sted"; ObjectID = "1d7-zN-CRb"; */
+"1d7-zN-CRb.text" = "Place";
+
+/* Class = "UIButton"; normalTitle = "Legg i kalender"; ObjectID = "2Kk-2c-s71"; */
+"2Kk-2c-s71.normalTitle" = "Add to calendar";
+
+/* Class = "UILabel"; text = "Beskrivelse tekst. Maks 120 tegn. Maks 120 tegn. Maks 120 tegn. Maks 120 tegn"; ObjectID = "3tO-EJ-Zc5"; */
+"3tO-EJ-Zc5.text" = "Beskrivelse tekst. Maks 120 tegn. Maks 120 tegn. Maks 120 tegn. Maks 120 tegn";
+
+/* Class = "UILabel"; text = "Infotekst til strekkode. Maks 80 tegn. Maks 80 tegn. Maks 80 tegn."; ObjectID = "8w0-YT-jXl"; */
+"8w0-YT-jXl.text" = "Infotekst til strekkode. Maks 80 tegn. Maks 80 tegn. Maks 80 tegn.";
+
+/* Class = "UILabel"; text = "Sted:"; ObjectID = "9sY-1l-gof"; */
+"9sY-1l-gof.text" = "Place:";
+
+/* Class = "UILabel"; text = "Når:"; ObjectID = "CED-ja-eBm"; */
+"CED-ja-eBm.text" = "When:";
+
+/* Class = "UILabel"; text = "Subtittel"; ObjectID = "D2k-oV-TyX"; */
+"D2k-oV-TyX.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "Tittel lenke"; ObjectID = "IfT-uq-aap"; */
+"IfT-uq-aap.text" = "Link title";
+
+/* Class = "UIButton"; normalTitle = "URL lenke"; ObjectID = "TaO-Ec-bCc"; */
+"TaO-Ec-bCc.normalTitle" = "URL link";
+
+/* Class = "UILabel"; text = "Tittel strekkode"; ObjectID = "cRG-a1-uv5"; */
+"cRG-a1-uv5.text" = "barcode title";
+
+/* Class = "UILabel"; text = "Emne"; ObjectID = "jlF-r1-8sS"; */
+"jlF-r1-8sS.text" = "Subject";
+
+/* Class = "UILabel"; text = "Info"; ObjectID = "vwG-Wg-Joe"; */
+"vwG-Wg-Joe.text" = "Info";
+
+/* Class = "UIButton"; normalTitle = "Åpne i Kart"; ObjectID = "yHV-eT-7BZ"; */
+"yHV-eT-7BZ.normalTitle" = "Open in Maps";
+
+/* Class = "UILabel"; text = "Dato og klokkeslett"; ObjectID = "yHb-Gi-DMj"; */
+"yHb-Gi-DMj.text" = "Date and time";

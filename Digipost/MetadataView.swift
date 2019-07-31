@@ -19,8 +19,8 @@ import Foundation
 @objc class MetadataView: UIView {
     
     let customTitleLineSpacing:CGFloat = 4
-    let customTextLineSpacing:CGFloat = 3
-    let minimumTitleLineHeight:CGFloat = 20
+    let customTextLineSpacing:CGFloat = 2
+    let minimumTitleLineHeight:CGFloat = 17
     let minimumTextLineHeight:CGFloat = 15
 
     override init(frame: CGRect) {
@@ -35,7 +35,7 @@ import Foundation
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.font = UIFont(name: "Helvetica", size: minimumLineHeight)
+        label.font = UIFont(name: "HelveticaNeue", size: minimumLineHeight)
         label.attributedText = attributedString(text: text, lineSpacing: lineSpacing, minimumLineHeight: minimumLineHeight)
         label.sizeToFit()
         
@@ -47,7 +47,7 @@ import Foundation
         let style = NSMutableParagraphStyle()
         style.lineSpacing = lineSpacing
         style.minimumLineHeight = minimumLineHeight
-        attrString.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: NSRange(location: 0, length: text.characters.count))
+        attrString.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: NSRange(location: 0, length: text.count))
         return attrString
     }
 }

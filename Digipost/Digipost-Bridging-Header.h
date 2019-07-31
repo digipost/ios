@@ -50,4 +50,5 @@
 #import "NSString+RandomNumber.h"
 #import "NSString+Hmac.h"
 #import "Macros.h"
+#import "Code39.h"
 

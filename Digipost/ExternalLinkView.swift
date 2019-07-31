@@ -23,7 +23,6 @@ import SafariServices
     @IBOutlet weak var text: UILabel!
     @IBOutlet weak var deadline: UILabel!
     @IBOutlet weak var feedbackButton: UIButton!
-    @objc var extraHeight = CGFloat(0)
     @objc var parentViewController: POSLetterViewController? = nil
     var url = "https://www.digipost.no"
 
@@ -33,9 +32,10 @@ import SafariServices
         view.url = externalLink.url;
         view.feedbackButton.setTitle(externalLink.buttonText, for: UIControlState.normal)
         view.feedbackButton.titleLabel?.numberOfLines = 2
-        view.extraHeight += positiveHeightAdjustment(text: externalLink.text, width: view.text.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        let extraHeight = positiveHeightAdjustment(text: externalLink.text, width: view.text.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.containerViewHeight.constant += extraHeight
-        
+        view.layoutIfNeeded()
         if externalLink.deadlineText.length > 0 {
             var deadlineText = String.localizedStringWithFormat(NSLocalizedString("metadata externalink deadline", comment:"Frist: "), externalLink.deadlineText)
             if externalLink.deadline < Date() {

@@ -23,17 +23,13 @@ import Foundation
             return parseAppointment(metadata: metadata, creatorName: creatorName)
         }else if metadata.type == POSMetadata.TYPE.EXTERNAL_LINK {
             return parseExternalLink(metadata: metadata)
+        }else if metadata.type == POSMetadata.TYPE.EVENT {
+            return parseEvent(metadata: metadata)
         }
         
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
     }
     
-    static func appointment(metadata: POSMetadata, creatorName: String) -> Any? {
-        if metadata.type == POSMetadata.TYPE.APPOINTMENT {
-            return parseAppointment(metadata: metadata, creatorName: creatorName)
-        }
-        return POSMetadataObject(type: POSMetadata.TYPE.NIL)
-    }
     
     static func parseExternalLink(metadata: POSMetadata) -> POSExternalLink {
         let externalLink = POSExternalLink() 
@@ -64,6 +60,63 @@ import Foundation
         }
         
         return externalLink        
+    }
+    
+    private static func parseEvent(metadata: POSMetadata) -> POSEvent {
+        let event = POSEvent()
+        
+        if let subTitle = metadata.json["subTitle"] as? String {
+            event.subTitle = subTitle
+        }
+        
+        if let descriptionText = metadata.json["description"] as? String {
+            event.descriptionText = descriptionText
+        }
+        
+        if let place = metadata.json["place"] as? String {
+            event.place = place
+        }
+        
+        if let location = metadata.json["address"] as? Dictionary<String, Any> {
+            if let streetAdress = location["streetAddress"] as? String {
+                event.streetAddress = streetAdress
+            }
+            if let postalCode = location["postalCode"] as? String {
+                event.postalCode = postalCode
+            }
+            if let city = location["city"] as? String {
+                event.city = city
+            }
+            event.address = "\(event.streetAddress) \n\(event.postalCode) \(event.city)"
+        }
+        
+        if let timeframes = metadata.json["time"] as? [Dictionary<String, Any>]{
+            for timeframe in timeframes {
+                if let startTime = timeframe["startTime"] as? String, let endTime = timeframe["endTime"] as? String {
+                    if let startTimeDate = stringToDate(timeString: startTime), let endTimeDate = stringToDate(timeString: endTime) {
+                        event.timeframes.append(POSTimeframe(startTime: startTimeDate, endTime:endTimeDate ))
+                    }
+                }
+            }
+        }
+        
+        if let infoList = metadata.json["info"] as? [[String: Any]] {
+            for info in infoList {
+                event.info.append(POSMetadataInfo(title: info["title"] as! String, text: info["text"] as! String))
+            }
+        }
+        
+        if let links = metadata.json["links"] as? [[String: Any]] {
+            for link in links {
+                event.links.append(POSEventLink(descriptionText: link["description"] as! String, url: link["url"] as! String))
+            }
+        }
+        
+        if let barcode = metadata.json["barcode"] as? Dictionary<String, Any>{45346345
+            event.barcodes.append(POSBarcode(value: barcode["barcodeValue"] as? String , type: barcode["barcodeType"] as? String, text: barcode["barcodeText"] as? String, label: metadata.json["barcodeLabel"] as? String))
+        }
+    
+        return event
     }
     
     private static func parseAppointment(metadata: POSMetadata, creatorName: String) -> POSAppointment {            
