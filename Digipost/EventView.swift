@@ -87,7 +87,7 @@ import EventKit
         //Barcode
         for barcode in event.barcodes {
             view.barcodeTitle.text = barcode.label
-            var attributedBarcodeDescription = NSMutableAttributedString()
+            let attributedBarcodeDescription = NSMutableAttributedString()
             attributedBarcodeDescription.append(NSAttributedString(string: barcode.value))
             attributedBarcodeDescription.append(NSAttributedString(string: "\n"+barcode.text))
             view.barcodeDescription.attributedText = attributedBarcodeDescription
