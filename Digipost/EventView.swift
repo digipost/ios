@@ -86,9 +86,11 @@ import EventKit
         
         //Barcode
         for barcode in event.barcodes {
-
             view.barcodeTitle.text = barcode.label
-            view.barcodeDescription.text = barcode.text
+            var attributedBarcodeDescription = NSMutableAttributedString()
+            attributedBarcodeDescription.append(NSAttributedString(string: barcode.value))
+            attributedBarcodeDescription.append(NSAttributedString(string: "\n"+barcode.text))
+            view.barcodeDescription.attributedText = attributedBarcodeDescription
             if barcode.type.lowercased() == "code-39" {
                 view.barcode.image = Code39.code39Image(from: barcode.value, width: view.barcode.frame.width, height: view.barcode.frame.height)
             }else{
