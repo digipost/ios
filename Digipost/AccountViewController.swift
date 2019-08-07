@@ -111,17 +111,15 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         navigationController?.navigationBar.topItem?.setRightBarButton(logoutBarButtonItem, animated: false)
         
         
-        if OAuthToken.isUserLoggedIn() == false {
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
+        if OAuthToken.isUserLoggedIn(){
+            updateContentsFromServerUseInitiateRequest(0)
         } else {
-            if (OAuthToken.isUserLoggedIn()) {
-                updateContentsFromServerUseInitiateRequest(0)
-            }
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
         }
     }
     
     func updateContentsFromServerUseInitiateRequest(_ userDidInitiateRequest: Int) {
-        
+    
         APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
             POSModelManager.shared().updateRootResource(attributes: responseDictionary)
             if let actualRefreshControl = self.refreshControl {
