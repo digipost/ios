@@ -480,7 +480,6 @@ import AFNetworking
                     }
             })
         } else {
-            print("OAuth validate kill it with fire!!!!!!!!!!!!")
             DispatchQueue.main.async(execute: {
                 self.deleteRefreshTokensAndLogoutUser()
             })
