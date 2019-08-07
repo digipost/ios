@@ -564,9 +564,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    //    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
-    //        return;
-    //    }
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = [userDidInititateRequest boolValue];
     // Saving uri for the open document in case we need to re fetch it later
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
