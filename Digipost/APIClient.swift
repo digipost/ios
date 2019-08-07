@@ -480,20 +480,12 @@ import AFNetworking
                     }
             })
         } else {
-   
-            if let actualOAuthToken = oAuthToken {
-                if actualOAuthToken.hasExpired() {
-                    actualOAuthToken.accessToken = nil
-                }
-            }
-            oAuthToken?.removeFromKeychainIfNoAccessToken()
-            let lowerLevelOAuthToken = OAuthToken.getToken()
-            if (lowerLevelOAuthToken != nil) {
-                validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
-            } else {
-                Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Lower level token was revoked, because of a http 401 from server")
-                failure?(NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.noOAuthTokenPresent.rawValue, userInfo: nil))
-            }
+            print("OAuth validate kill it with fire!!!!!!!!!!!!")
+            DispatchQueue.main.async(execute: {
+                self.deleteRefreshTokensAndLogoutUser()
+            })
+            Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Lower level token was revoked, because of a http 401 from server")
+            failure?(NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.noOAuthTokenPresent.rawValue, userInfo: nil))
         }
     }
 
