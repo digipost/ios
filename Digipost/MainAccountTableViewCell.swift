@@ -33,6 +33,7 @@ class MainAccountTableViewCell: UITableViewCell {
         accountNameLabel.textColor = UIColor.digipostProfileTextColor()
         initialLabel.textColor = UIColor.digipostProfileViewInitials()
         unreadMessages.textColor = UIColor.digipostProfileTextColor()
+        accessibilityTraits = UIAccessibilityTraitButton
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

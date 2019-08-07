@@ -281,6 +281,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     cell.arrowImageView.hidden = arrowHidden;
     cell.unreadCounterImageView.hidden = unreadCounterHidden;
     cell.unreadCounterLabel.hidden = unreadCounterHidden;
+    cell.accessibilityTraits = UIAccessibilityTraitButton;
 
     if (!unreadCounterHidden) {
         cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", mailbox.unreadItemsInInbox];

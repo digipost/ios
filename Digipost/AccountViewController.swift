@@ -98,6 +98,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         logoutButtonVariable?.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), for: UIControlState())
         logoutButtonVariable?.setTitleColor(UIColor.digipostLogoutButtonTextColor(), for: UIControlState())
+        logoutBarButtonItem.accessibilityTraits = UIAccessibilityTraitButton
         
         if let showingItem: UINavigationItem = navigationController?.navigationBar.backItem {
             if showingItem.responds(to: #selector(setter: UINavigationItem.rightBarButtonItem)) {
