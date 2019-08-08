@@ -143,13 +143,13 @@ CGFloat extraMetadataConstraintHeight = 0;
                                                      name:kDocumentsViewEditingStatusChangedNotificationName
                                                    object:nil];
     }
-    [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
-                forViewController:self];
     [self reloadFromMetadata];
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
 
     [self addTapGestureRecognizersToWebView:self.webView];
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
+                    forViewController:self];
         [self updateLeftBarButtonForIpad];
     }
 }
