@@ -23,6 +23,9 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="digipostlogo" translatesAutoresizingMaskIntoConstraints="NO" id="TCD-UA-hKd">
                                         <rect key="frame" x="123" y="0.5" width="74" height="31"/>
+                                        <accessibility key="accessibilityConfiguration" label="Digipost logo">
+                                            <accessibilityTraits key="traits" image="YES" notEnabled="YES" header="YES"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="TCD-UA-hKd" secondAttribute="height" multiplier="36:19" constant="15.263157894736842" id="9Oa-W7-uyT"/>
                                             <constraint firstAttribute="height" constant="31" id="YmX-vp-wmq"/>
@@ -131,6 +134,9 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZK3-le-B8c">
                                         <rect key="frame" x="56" y="17" width="293" height="29"/>
+                                        <accessibility key="accessibilityConfiguration" label="Registrer ny konto på Digipost.no ">
+                                            <accessibilityTraits key="traits" link="YES"/>
+                                        </accessibility>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <state key="normal" title="Registrer deg her"/>
                                         <connections>
@@ -211,6 +217,9 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLY-u3-LrI">
                                 <rect key="frame" x="70" y="438" width="286" height="29"/>
+                                <accessibility key="accessibilityConfiguration" label="Les mer om personvern på Digipost.no">
+                                    <accessibilityTraits key="traits" link="YES"/>
+                                </accessibility>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <state key="normal" title="Les mer her"/>
                                 <connections>

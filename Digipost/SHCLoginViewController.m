@@ -65,7 +65,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewDidLoad];
     
-    self.loginButton.accessibilityLabel = @"Login Digipost";
+    self.loginButton.accessibilityLabel = @"Logg inn med fødselsnummer og passord";
+    self.loginIdPortenButton.accessibilityLabel = @"Logg inn med elektronisk ID via ID-porten";
+    
     self.screenName = kLoginViewControllerScreenName;
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
