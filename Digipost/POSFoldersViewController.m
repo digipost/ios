@@ -454,6 +454,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     }
 
     headerLabel.text = title;
+    headerLabel.accessibilityTraits = UIAccessibilityTraitHeader;
 
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0,
                                                             0.0,
