@@ -57,8 +57,14 @@ class APIError: NSError {
         return apierror
     }
     
+    class func noOAuthTokenPresent() -> APIError {
+        let apierror = APIError(domain: Constants.Error.noOAuthTokenPresent, code: Constants.Error.Code.noOAuthTokenPresent.rawValue, userInfo: nil)
+        return apierror
+    }
+    
     class func HasNoOAuthTokenForScopeError(_ scope: String) -> APIError {
         let apierror = APIError(domain: Constants.Error.apiErrorDomainOAuthUnauthorized, code: Constants.Error.Code.needHigherAuthenticationLevel.rawValue, userInfo:[ Constants.Error.apiClientErrorScopeKey : scope])
+        
         return apierror
     }
     
