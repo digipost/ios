@@ -196,30 +196,19 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             if (data ) {
                 responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             }
-          if (failure) {
-              // Check to see if the request failed because the refresh token was denied
-
-              if ([[APIClient sharedClient] responseCodeForOAuthRefreshTokenRenewaIsUnauthorized:task.response]) {
-                  if ([scope isEqualToString:kOauth2ScopeFull]) {
-                      if (responseDictionary != nil) {
-                          if ([responseDictionary[kOauth2ErrorResponse] isEqualToString:kOauth2InvalidGrant]) {
-                              NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                         code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
-                                                                     userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
-                              failure(customError);
-                          }
-                      }
-
-                  } else {
-                      // remove token and retry request
-                      OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
-                      [oAuthToken removeFromKeychainIfNoAccessToken];
-                      OAuthToken *currentlyHighestOauthToken = [OAuthToken getToken];
-                      if (currentlyHighestOauthToken != nil) {
-                          [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
-                      }
-                  }
-              }
+            if (failure) {
+                // Check to see if the request failed because the refresh token was denied
+                if ([[APIClient sharedClient] responseCodeForOAuthRefreshTokenRenewaIsUnauthorized:task.response]) {
+                    if (responseDictionary != nil) {
+                        if ([responseDictionary[kOauth2ErrorResponse] isEqualToString:kOauth2InvalidGrant]) {
+                            NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                                       code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
+                                                                   userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
+                          failure(customError);
+                        }
+                    }
+                    
+                }
           }
         }];
 }
