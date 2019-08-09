@@ -291,20 +291,21 @@ import AFNetworking
             attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
             oAuthToken = OAuthToken.oAuthTokenWithScope(attachmentScope!)
         }
-
+        
         if oAuthToken == nil {
-            let attachment = baseEncryptionModel as! POSAttachment
-            attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
-            failure(APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
+            failure(APIError.noOAuthTokenPresent())
             return
         }
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
-
         validate(token: oAuthToken) { () -> Void in
             let task = self.urlSessionDownloadTask(httpMethod.get, encryptionModel: baseEncryptionModel, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
                 success()
                 }, failure: { (error) -> () in
-                    failure(error)
+                    if error._code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue)  {
+                        failure(APIError.noOAuthTokenPresent())
+                    } else {
+                        failure(error)
+                    }
             })
             task.resume()
         }
