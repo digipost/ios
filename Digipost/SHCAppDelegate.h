@@ -33,5 +33,6 @@
 - (void)uploadImageWithURL:(NSURL *)url;
 - (void)initGCM;
 - (void)revokeGCMToken;
+- (void)showLoginView;
 
 @end

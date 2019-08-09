@@ -71,7 +71,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     self.screenName = kLoginViewControllerScreenName;
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if([OAuthToken isUserLoggedIn] == YES ){
+        if([OAuthToken isUserLoggedIn]){
             [self presentAppropriateViewControllerForIPhone];
         }
     }
