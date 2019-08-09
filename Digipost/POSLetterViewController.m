@@ -266,6 +266,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     [self.navigationController setToolbarHidden: NO animated:YES];
     if (![OAuthToken isUserLoggedIn]){
         [self.webView loadHTMLString:@"" baseURL:nil];
+        [self logoutUser];
     }
     [super viewWillAppear:animated];
 }

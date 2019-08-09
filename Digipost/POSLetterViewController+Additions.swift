@@ -77,4 +77,25 @@ extension POSLetterViewController {
         }
         return false
     }
+    
+    @objc func logoutUser() {
+        let appDelegate: SHCAppDelegate = UIApplication.shared.delegate as! SHCAppDelegate
+        
+        if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
+            letterViewController.attachment = nil
+        }
+        
+        APIClient.sharedClient.logoutThenDeleteAllStoredData()
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
+        }else{
+            var viewControllers: [UIViewController] = []
+            if (navigationController?.viewControllers[0].isKind(of: SHCLoginViewController.self))! {
+                if let loginView = navigationController?.viewControllers[0] {
+                    viewControllers.append(loginView)
+                    navigationController?.setViewControllers(viewControllers, animated: true)
+                }
+            }
+        }
+    }
 }
