@@ -607,26 +607,7 @@ CGFloat extraMetadataConstraintHeight = 0;
         [self showLockedViewCanBeUnlocked:NO];
         return;
     }
-/*
- NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
- NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
-    if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-        NSError *error = nil;
-
-        if (![[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
-                                                                             error:&error]) {
-            [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
-            return;
-        }
-
-
-        NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
-        [self loadFileURL:fileURL];
-    } else {
-        [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
-    }
- */
     [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     if(self.attachment){
         [self updateCurrentDocument];
@@ -716,16 +697,6 @@ CGFloat extraMetadataConstraintHeight = 0;
         withProgress:self.progress
         success:^{
           NSError *error = nil;
-            
-           /*
-          if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:attachment error:&error]) {
-              [UIAlertView showWithTitle:error.errorTitle
-                                 message:[error localizedDescription]
-                       cancelButtonTitle:nil
-                       otherButtonTitles:@[ error.okButtonTitle ]
-                                tapBlock:error.tapBlock];
-          }
-            */
           if ([self.attachment.fileType isEqualToString:@"html"]) {
               self.view.backgroundColor = [UIColor whiteColor];
           }
@@ -815,15 +786,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                   withProgress:progress
                   success:^{
                     NSError *error = nil;
-                      /*
-                    if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
-                        [UIAlertView showWithTitle:error.errorTitle
-                                           message:[error localizedDescription]
-                                 cancelButtonTitle:nil
-                                 otherButtonTitles:@[ error.okButtonTitle ]
-                                          tapBlock:error.tapBlock];
-                    }
-                       */
+
                     if ([self.attachment.fileType isEqualToString:@"html"]) {
                         self.view.backgroundColor = [UIColor whiteColor];
                     }
@@ -859,16 +822,6 @@ CGFloat extraMetadataConstraintHeight = 0;
               }
 
                 NSError *error = nil;
-                /*
-              if
-                 (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
-                  [UIAlertView showWithTitle:error.errorTitle
-                                     message:[error localizedDescription]
-                           cancelButtonTitle:nil
-                           otherButtonTitles:@[ error.okButtonTitle ]
-                                    tapBlock:error.tapBlock];
-              }
-                                   */
               if (changedBaseEncryptionModel == nil) {
                   return;
               }
