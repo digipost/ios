@@ -115,7 +115,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         if OAuthToken.isUserLoggedIn(){
             updateContentsFromServerUseInitiateRequest(0)
         } else {
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
+            userDidConfirmLogout()
         }
     }
     
