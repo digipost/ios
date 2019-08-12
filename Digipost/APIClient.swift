@@ -185,8 +185,6 @@ import AFNetworking
             self.logout(success: { () -> Void in
                 // get run for every time a sucessful scope logs out
                 }) { (error) -> () in
-                    print(error.alertTitle)
-                    print(error.altertMessage)
                 // gets run for every failed request
             }
         }
