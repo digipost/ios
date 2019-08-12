@@ -141,7 +141,9 @@ struct AuthenticationLevel {
     }
     
     @objc class func removeToken() {
-        LUKeychainAccess.standard().deleteObject(forKey: kOAuth2Token)
+        if self.getToken() != nil {
+            LUKeychainAccess.standard().deleteObject(forKey: kOAuth2Token)
+        }
     }
     
     @objc class func isUserLoggedIn() -> Bool {
