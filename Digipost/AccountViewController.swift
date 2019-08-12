@@ -98,6 +98,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         logoutButtonVariable?.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), for: UIControlState())
         logoutButtonVariable?.setTitleColor(UIColor.digipostLogoutButtonTextColor(), for: UIControlState())
+        logoutBarButtonItem.accessibilityTraits = UIAccessibilityTraitButton
         
         if let showingItem: UINavigationItem = navigationController?.navigationBar.backItem {
             if showingItem.responds(to: #selector(setter: UINavigationItem.rightBarButtonItem)) {
@@ -110,28 +111,28 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.topItem?.setRightBarButton(logoutBarButtonItem, animated: false)
         
-        
-        if OAuthToken.isUserLoggedIn() == false {
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
+        if OAuthToken.isUserLoggedIn(){
+            updateContentsFromServerUseInitiateRequest(0)
         } else {
-            if (OAuthToken.isUserLoggedIn()) {
-                updateContentsFromServerUseInitiateRequest(0)
-            }
+            userDidConfirmLogout()
         }
     }
     
     func updateContentsFromServerUseInitiateRequest(_ userDidInitiateRequest: Int) {
-        
+    
         APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
             POSModelManager.shared().updateRootResource(attributes: responseDictionary)
             if let actualRefreshControl = self.refreshControl {
                 actualRefreshControl.endRefreshing()
             }
         }) { (error) -> () in
+            if(error.code == Constants.Error.Code.noOAuthTokenPresent.rawValue || error.code == Constants.Error.Code.oAuthUnathorized.rawValue){
+                self.userDidConfirmLogout()
+            }
+            
             if (userDidInitiateRequest == 1) {
                 UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self, didTapOkClosure: nil)
             }
-            
             if let actualRefreshControl = self.refreshControl {
                 actualRefreshControl.endRefreshing()
             }
@@ -216,18 +217,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
         dataSource?.stopListeningToCoreDataChanges()
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
-        }else{
-            var viewControllers: [UIViewController] = []
-            if (navigationController?.viewControllers[0].isKind(of: SHCLoginViewController.self))! {
-                if let loginView = navigationController?.viewControllers[0] {
-                    viewControllers.append(loginView)
-                    navigationController?.setViewControllers(viewControllers, animated: true)
-                }
-            }
-        }
+
+        appDelegate.showLoginView()
     }
-    
-    
 }

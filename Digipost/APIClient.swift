@@ -185,8 +185,6 @@ import AFNetworking
             self.logout(success: { () -> Void in
                 // get run for every time a sucessful scope logs out
                 }) { (error) -> () in
-                    print(error.alertTitle)
-                    print(error.altertMessage)
                 // gets run for every failed request
             }
         }
@@ -291,20 +289,21 @@ import AFNetworking
             attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
             oAuthToken = OAuthToken.oAuthTokenWithScope(attachmentScope!)
         }
-
+        
         if oAuthToken == nil {
-            let attachment = baseEncryptionModel as! POSAttachment
-            attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
-            failure(APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
+            failure(APIError.noOAuthTokenPresent())
             return
         }
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
-
         validate(token: oAuthToken) { () -> Void in
             let task = self.urlSessionDownloadTask(httpMethod.get, encryptionModel: baseEncryptionModel, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
                 success()
                 }, failure: { (error) -> () in
-                    failure(error)
+                    if error._code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue)  {
+                        failure(APIError.noOAuthTokenPresent())
+                    } else {
+                        failure(error)
+                    }
             })
             task.resume()
         }
@@ -480,20 +479,11 @@ import AFNetworking
                     }
             })
         } else {
-   
-            if let actualOAuthToken = oAuthToken {
-                if actualOAuthToken.hasExpired() {
-                    actualOAuthToken.accessToken = nil
-                }
-            }
-            oAuthToken?.removeFromKeychainIfNoAccessToken()
-            let lowerLevelOAuthToken = OAuthToken.getToken()
-            if (lowerLevelOAuthToken != nil) {
-                validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
-            } else {
-                Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Lower level token was revoked, because of a http 401 from server")
-                failure?(NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.noOAuthTokenPresent.rawValue, userInfo: nil))
-            }
+            DispatchQueue.main.async(execute: {
+                self.deleteRefreshTokensAndLogoutUser()
+            })
+            Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Lower level token was revoked, because of a http 401 from server")
+            failure?(NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.noOAuthTokenPresent.rawValue, userInfo: nil))
         }
     }
 

@@ -383,10 +383,10 @@
 "Accessability backbutton title" = "Tilbake";
 
 /* Accessibilitylabel on document cell */
-"%@  Received %@ From" = "%1$@  Mottat %2$@ Fra";
+"%@  Received %@ From" = "%1$@  Mottatt %2$@ Fra";
 
 /* Accessibilitylabel on document cell */
-"%@  Received %@ From %@" = "%1$@.  Mottat %2$@. Fra %3$@";
+"%@  Received %@ From %@" = "%1$@.  Mottatt %2$@. Fra %3$@";
 
 /* Upload */
 "FOLDERS_VIEW_CONTROLLER_UPLOAD_TITLE" = "Last opp";

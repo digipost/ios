@@ -51,8 +51,9 @@ struct Constants {
     
     struct Error {
         static let apiErrorDomainOAuthUnauthorized = "oAuthUnauthorized"
-        
         static let apiClientErrorDomain = "APIManagerErrorDomain"
+        static let noOAuthTokenPresent = "APInoOAuthTokenPresent"
+        
         enum Code : Int {
             case oAuthUnathorized = 4001
             case uploadFileDoesNotExist = 4002

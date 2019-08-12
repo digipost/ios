@@ -25,6 +25,8 @@
 #import "POSDocumentsViewController.h"
 #import "UIViewController+BackButton.h"
 #import "POSLetterViewController.h"
+#import "SHCAppDelegate.h"
+#import "Digipost-Swift.h"
 
 @interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
 
@@ -74,6 +76,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    if(![OAuthToken isUserLoggedIn]){
+        SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
+        [appDelegate showLoginView];
+    }
+    
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;

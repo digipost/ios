@@ -186,13 +186,8 @@ BOOL onGoingAuthentication = FALSE;
 }
 
 -(void)userCanceledLocalAuthentication {
-    [self revokeGCMToken];
     [[APIClient sharedClient] logoutThenDeleteAllStoredData];
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [self showLoginView];
-    }else{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
-    }
+    [self showLoginView];
     [self removeAuthOverlayView];
 }
 
@@ -357,6 +352,8 @@ BOOL onGoingAuthentication = FALSE;
                 [navController setViewControllers:newViewControllerArray animated:YES];
             });
         }
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
     }
 }
 

@@ -55,7 +55,7 @@ NSString *const kinvoiceOptionsSegue = @"invoiceOptionsSegue";
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
-@interface POSLetterViewController () <UIWebViewDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate, SHCOAuthViewControllerDelegate>
+@interface POSLetterViewController () <SFSafariViewControllerDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate, SHCOAuthViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *informationBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -143,13 +143,13 @@ CGFloat extraMetadataConstraintHeight = 0;
                                                      name:kDocumentsViewEditingStatusChangedNotificationName
                                                    object:nil];
     }
-    [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
-                forViewController:self];
     [self reloadFromMetadata];
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
 
     [self addTapGestureRecognizersToWebView:self.webView];
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
+                    forViewController:self];
         [self updateLeftBarButtonForIpad];
     }
 }
@@ -219,39 +219,18 @@ CGFloat extraMetadataConstraintHeight = 0;
         NSString *invoiceTitle = self.attachment.subject;
         InvoiceOptionsViewController *invoiceOptionsViewController = (InvoiceOptionsViewController*) segue.destinationViewController;
         invoiceOptionsViewController.title = invoiceTitle;
-    }else if ([segue.identifier isEqualToString:@"showExternalLinkWebview"]) {
-        ExternalLinkWebview *externalLinkWebview = (ExternalLinkWebview*) segue.destinationViewController;
-        externalLinkWebview.initUrl = (NSString *)sender;
     }
 }
 
 -(void)openExternalLink:(NSString*) url {
     NSURL *urlObject = [NSURL URLWithString:url];
     
-    if([urlObject.scheme isEqual: @"https"]) {
-        [self performSegueWithIdentifier:@"showExternalLinkWebview" sender:url];
-    } else{
-        UIAlertController * alert = [UIAlertController
-                                     alertControllerWithTitle:[urlObject host]
-                                     message:nil
-                                     preferredStyle:UIAlertControllerStyleActionSheet];
-        
-        UIAlertAction* open = [UIAlertAction
-                               actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action)
-                               {
-                                   [[UIApplication sharedApplication] openURL:urlObject];
-                               }];
-        UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:^(UIAlertAction * action){}];
-        [alert addAction:open];
-        [alert addAction:cancel];
-        UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
-        popPresenter.sourceView = self.view;
-        [self presentViewController:alert animated:YES completion:nil];
-    }
+    SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:urlObject];
+    safariVC.delegate = self;
+    
+    UIPopoverPresentationController *popPresenter = [safariVC popoverPresentationController];
+    popPresenter.sourceView = self.view;
+    [self presentViewController:safariVC animated:NO completion:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -287,6 +266,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     [self.navigationController setToolbarHidden: NO animated:YES];
     if (![OAuthToken isUserLoggedIn]){
         [self.webView loadHTMLString:@"" baseURL:nil];
+        [self logoutUser];
     }
     [super viewWillAppear:animated];
 }
@@ -628,26 +608,7 @@ CGFloat extraMetadataConstraintHeight = 0;
         [self showLockedViewCanBeUnlocked:NO];
         return;
     }
-/*
- NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
- NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
-    if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-        NSError *error = nil;
-
-        if (![[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
-                                                                             error:&error]) {
-            [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
-            return;
-        }
-
-
-        NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
-        [self loadFileURL:fileURL];
-    } else {
-        [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
-    }
- */
     [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     if(self.attachment){
         [self updateCurrentDocument];
@@ -737,16 +698,6 @@ CGFloat extraMetadataConstraintHeight = 0;
         withProgress:self.progress
         success:^{
           NSError *error = nil;
-            
-           /*
-          if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:attachment error:&error]) {
-              [UIAlertView showWithTitle:error.errorTitle
-                                 message:[error localizedDescription]
-                       cancelButtonTitle:nil
-                       otherButtonTitles:@[ error.okButtonTitle ]
-                                tapBlock:error.tapBlock];
-          }
-            */
           if ([self.attachment.fileType isEqualToString:@"html"]) {
               self.view.backgroundColor = [UIColor whiteColor];
           }
@@ -836,15 +787,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                   withProgress:progress
                   success:^{
                     NSError *error = nil;
-                      /*
-                    if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
-                        [UIAlertView showWithTitle:error.errorTitle
-                                           message:[error localizedDescription]
-                                 cancelButtonTitle:nil
-                                 otherButtonTitles:@[ error.okButtonTitle ]
-                                          tapBlock:error.tapBlock];
-                    }
-                       */
+
                     if ([self.attachment.fileType isEqualToString:@"html"]) {
                         self.view.backgroundColor = [UIColor whiteColor];
                     }
@@ -880,16 +823,6 @@ CGFloat extraMetadataConstraintHeight = 0;
               }
 
                 NSError *error = nil;
-                /*
-              if
-                 (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
-                  [UIAlertView showWithTitle:error.errorTitle
-                                     message:[error localizedDescription]
-                           cancelButtonTitle:nil
-                           otherButtonTitles:@[ error.okButtonTitle ]
-                                    tapBlock:error.tapBlock];
-              }
-                                   */
               if (changedBaseEncryptionModel == nil) {
                   return;
               }

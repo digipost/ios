@@ -315,6 +315,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
     cell.multipleSelectionBackgroundView = [UIView new];
+    cell.accessibilityTraits = UIAccessibilityTraitButton;
     
     NSArray *metadataArray = [attachment getMetadataArray];
     for(POSMetadataObject *metadataObject in metadataArray) {
@@ -564,9 +565,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    //    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
-    //        return;
-    //    }
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = [userDidInititateRequest boolValue];
     // Saving uri for the open document in case we need to re fetch it later
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;

@@ -36,6 +36,7 @@ class UploadMenuDataSource: NSObject, UITableViewDataSource {
     }
     
     func configureCell(_ cell: UploadMenuTableViewCell, indexPath: IndexPath){
+        cell.accessibilityTraits = UIAccessibilityTraitButton;
         switch indexPath.row {
         case 0:
             cell.titleLabel.text = NSLocalizedString("upload action sheet camera", comment:"start camera")

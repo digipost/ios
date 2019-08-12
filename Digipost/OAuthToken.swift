@@ -125,20 +125,6 @@ struct AuthenticationLevel {
         saveToken()
     }
     
-    func printContent(_ title: String){
-        print("auth ****************** printContent *********************");
-        print("auth : \(title)")
-        if let token = LUKeychainAccess.standard().object(forKey: kOAuth2Token) as? OAuthToken {
-            
-            print(token)
-            print("auth scope:\(token.scope)")
-            print("auth access \(token.accessToken)")
-            print("auth refresh \(token.refreshToken)")
-            print("auth scope \(token.scope)")
-        }
-        print("auth **************** printContent end ***********************");
-    }
-    
     // bug in swift compiler requires to set all instance variables before returning nil from an initializer
     fileprivate func setAllInstanceVariablesToNil() {
         self.refreshToken = nil
@@ -155,7 +141,9 @@ struct AuthenticationLevel {
     }
     
     @objc class func removeToken() {
-        LUKeychainAccess.standard().deleteObject(forKey: kOAuth2Token)
+        if self.getToken() != nil {
+            LUKeychainAccess.standard().deleteObject(forKey: kOAuth2Token)
+        }
     }
     
     @objc class func isUserLoggedIn() -> Bool {
@@ -239,13 +227,6 @@ struct AuthenticationLevel {
         }
         return true
     }
-
-    @objc func removeFromKeychainIfNoAccessToken() {
-        if accessToken == nil {
-            OAuthToken.removeToken()
-        }
-    }
-    
     
     @objc func setAccessTokenAndScope(_ accessToken: NSString, scope: NSString) {
         self.accessToken = accessToken as String

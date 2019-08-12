@@ -108,6 +108,7 @@
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAK-oK-zuu">
                             <rect key="frame" x="8" y="370.66666666666669" width="359" height="89"/>
+                            <accessibility key="accessibilityConfiguration" label="Strekkode"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="89" id="VPt-JL-BQ2"/>
                             </constraints>
