@@ -225,13 +225,6 @@ struct AuthenticationLevel {
         }
         return true
     }
-
-    @objc func removeFromKeychainIfNoAccessToken() {
-        if accessToken == nil {
-            OAuthToken.removeToken()
-        }
-    }
-    
     
     @objc func setAccessTokenAndScope(_ accessToken: NSString, scope: NSString) {
         self.accessToken = accessToken as String
