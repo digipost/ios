@@ -186,7 +186,6 @@ BOOL onGoingAuthentication = FALSE;
 }
 
 -(void)userCanceledLocalAuthentication {
-    [self revokeGCMToken];
     [[APIClient sharedClient] logoutThenDeleteAllStoredData];
     [self showLoginView];
     [self removeAuthOverlayView];
