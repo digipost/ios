@@ -179,12 +179,8 @@
 "LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE" = "New account";
 /* Privacy */
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE" = "Privacy";
-/* Archive */
-"FOLDER_NAME_ARCHIVE" = "Archive";
 /* Inbox */
 "FOLDER_NAME_INBOX" = "Mailbox";
-/* Workarea */
-"FOLDER_NAME_WORKAREA" = "Kitchen counter";
 /* Fra */
 "GENERIC_FROM_LABEL" = "From";
 /* Til */

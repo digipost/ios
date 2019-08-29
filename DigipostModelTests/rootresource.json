@@ -1,424 +1,403 @@
 {
-    "csrfToken": "HHQ9NDZH3UFIIXKZ2M4Q6E9JYCQZINS3",
-    "authenticationlevel": 2,
-    "authenticationlevelIdporten": 0,
-    "validationRules": {
-        "email": "^([\\w\\!\\#$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`{\\|\\}\\~]+\\.)*[\\w\\!\\#$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`{\\|\\}\\~]+@((((([a-zA-Z0-9]{1}[a-zA-Z0-9\\-]{0,62}[a-zA-Z0-9]{1})|[a-zA-Z])\\.)+[a-zA-Z]{2,6})|(\\d{1,3}\\.){3}\\d{1,3}(\\:\\d{1,5})?)$",
-        "birthNumber": "^\\d{11}$",
-        "organisationNumber": "^\\d{9}$",
-        "phoneNumber": "^\\d{8}$",
-        "date": "^\\d{2}\\.\\d{2}\\.\\d{4}$",
-        "nonnegativeInteger": "^\\d+$",
-        "integer": "^[+-]?\\d+$",
-        "name": "^\\d+$",
-        "digipostAddress": "^[a-zæøåA-ZÆØÅ0-9\\.\\/]{1,35}#[0-9a-zA-Z]{4}$",
-        "percent": "^0*(100|[0-9]?[0-9])$",
-        "foldername": "^[a-zA-ZæøåÆØÅ0-9\\.\\-\\s\\(\\)\\,\\+]{1,30}$"
+  "csrfToken": "HHQ9NDZH3UFIIXKZ2M4Q6E9JYCQZINS3",
+  "authenticationlevel": 2,
+  "authenticationlevelIdporten": 0,
+  "validationRules": {
+    "email": "^([\\w\\!\\#$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`{\\|\\}\\~]+\\.)*[\\w\\!\\#$\\%\\&\\'\\*\\+\\-\\/\\=\\?\\^\\`{\\|\\}\\~]+@((((([a-zA-Z0-9]{1}[a-zA-Z0-9\\-]{0,62}[a-zA-Z0-9]{1})|[a-zA-Z])\\.)+[a-zA-Z]{2,6})|(\\d{1,3}\\.){3}\\d{1,3}(\\:\\d{1,5})?)$",
+    "birthNumber": "^\\d{11}$",
+    "organisationNumber": "^\\d{9}$",
+    "phoneNumber": "^\\d{8}$",
+    "date": "^\\d{2}\\.\\d{2}\\.\\d{4}$",
+    "nonnegativeInteger": "^\\d+$",
+    "integer": "^[+-]?\\d+$",
+    "name": "^\\d+$",
+    "digipostAddress": "^[a-zæøåA-ZÆØÅ0-9\\.\\/]{1,35}#[0-9a-zA-Z]{4}$",
+    "percent": "^0*(100|[0-9]?[0-9])$",
+    "foldername": "^[a-zA-ZæøåÆØÅ0-9\\.\\-\\s\\(\\)\\,\\+]{1,30}$"
+  },
+  "primaryAccount": {
+    "personalidentificationnumberObfuscated": "010431*****",
+    "fullName": "Dangfart Utnes",
+    "firstName": "Dangfart",
+    "middleName": "",
+    "lastName": "Utnes",
+    "email": ["dangfart@example.com"],
+    "extendedEmail": [
+      {
+        "email": "dangfart@example.com",
+        "verified": false,
+        "link": [],
+        "underVerification": false
+      }
+    ],
+    "extendedPhone": {
+      "phoneNumber": "00000000",
+      "verified": false,
+      "link": []
     },
-    "primaryAccount": {
-        "personalidentificationnumberObfuscated": "010431*****",
-        "fullName": "Dangfart Utnes",
-        "firstName": "Dangfart",
-        "middleName": "",
-        "lastName": "Utnes",
-        "email": [
-                  "dangfart@example.com"
-                  ],
-        "extendedEmail": [
-                          {
-                          "email": "dangfart@example.com",
-                          "verified": false,
-                          "link": [],
-                          "underVerification": false
-                          }
-                          ],
-        "extendedPhone": {
-            "phoneNumber": "00000000",
-            "verified": false,
-            "link": []
-        },
-        "phonenumber": "00000000",
-        "digipostaddress": "dangfart.utnes#2KNX",
-        "address": [
-                    {
-                    "street": "Digipost Testgate",
-                    "city": "Oslo",
-                    "house-number": "231",
-                    "house-letter": "C",
-                    "additional-addressline": "",
-                    "zip-code": "0467"
-                    }
-                    ],
-        "remainingStampsThisMonth": 100,
-        "unreadItemsInInbox": 35,
-        "serviceSubscriptionStatus": {
-            "receiptServiceUser": false,
-            "letterServiceUser": true,
-            "link": []
-        },
-        "needsContactInfoVerification": false,
-        "shouldShowTips": false,
-        "shouldShowTerms": false,
-        "invalidEmail": [],
-        "usedStorage": 15641167,
-        "totalAvailableStorage": 1073741824,
-        "introducedToDigipost": true,
-        "link": [
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/update_account",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/account_settings",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/settings",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/mailbox_settings",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/mailboxsettings",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/messages",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/messages",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_message",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/messages",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/contact_lists",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/contactlists",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_contact_list",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/contactlists",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/receipts",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/receipts",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/document_inbox",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/inbox",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/document_workarea",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/workarea",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/document_archive",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/archive",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/close_account",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/move_mail",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/movemail/2939",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/completed_payment",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/payex/complete",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/completed_card_change",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/payex/completechange",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/token_list",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/tokens",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/banks",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/banks",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/current_bank_account",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/currentbankaccount",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/payments",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/payments",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/event_log",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/eventlogs",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/mailbox_access",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/access",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/tips",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/tips",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/offentlig_mailbox_choice",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/offentlig",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 },
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/postpone_offentlig_mailbox_choice",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/offentlig/postpone",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 }
-                 ]
+    "phonenumber": "00000000",
+    "digipostaddress": "dangfart.utnes#2KNX",
+    "address": [
+      {
+        "street": "Digipost Testgate",
+        "city": "Oslo",
+        "house-number": "231",
+        "house-letter": "C",
+        "additional-addressline": "",
+        "zip-code": "0467"
+      }
+    ],
+    "remainingStampsThisMonth": 100,
+    "unreadItemsInInbox": 35,
+    "serviceSubscriptionStatus": {
+      "receiptServiceUser": false,
+      "letterServiceUser": true,
+      "link": []
     },
-    "settings": [
-                 {
-                 "name": "fakturabetaling.aktivert",
-                 "value": "true"
-                 },
-                 {
-                 "name": "web.privat.tilgjengelig",
-                 "value": "true"
-                 },
-                 {
-                 "name": "web.virksomhet.tilgjengelig",
-                 "value": "true"
-                 }
-                 ],
-    "mailbox": [
-                {
-                "remainingStampsThisMonth": 100,
-                "unreadItemsInInbox": 35,
-                "usedStorage": 15641167,
-                "totalAvailableStorage": 1073741824,
-                "folders": {
-                "folder": [
-                           {
-                           "name": "Arkivet",
-                           "id": 2913,
-                           "icon": "BOX",
-                           "link": [
-                                    {
-                                    "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
-                                    "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2913",
-                                    "media-type": "application/vnd.digipost-v2+json"
-                                    },
-                                    {
-                                    "rel": "https://dpost.camelon.os.ergo.no/post/relations/change_folder",
-                                    "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2913",
-                                    "media-type": "application/vnd.digipost-v2+json"
-                                    },
-                                    {
-                                    "rel": "https://dpost.camelon.os.ergo.no/post/relations/delete_folder",
-                                    "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2913",
-                                    "media-type": "application/vnd.digipost-v2+json"
-                                    },
-                                    {
-                                    "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document",
-                                    "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2913",
-                                    "media-type": "application/vnd.digipost-v2+json"
-                                    }
-                                    ]
-                           },
-                           {
-                           "name": "Kjøkkenbenken",
-                           "id": 2914,
-                           "icon": "FOLDER",
-                           "link": [
-                                    {
-                                    "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
-                                    "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2914",
-                                    "media-type": "application/vnd.digipost-v2+json"
-                                    },
-                                    {
-                                    "rel": "https://dpost.camelon.os.ergo.no/post/relations/change_folder",
-                                    "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2914",
-                                    "media-type": "application/vnd.digipost-v2+json"
-                                    },
-                                    {
-                                    "rel": "https://dpost.camelon.os.ergo.no/post/relations/delete_folder",
-                                    "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2914",
-                                    "media-type": "application/vnd.digipost-v2+json"
-                                    },
-                                    {
-                                    "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document",
-                                    "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2914",
-                                    "media-type": "application/vnd.digipost-v2+json"
-                                    }
-                                    ]
-                           }
-                           ],
-                "link": [
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_folder",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/update_folders",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         }
-                         ]
-                },
-                "name": "Dangfart Utnes",
-                "digipostaddress": "dangfart.utnes#2KNX",
-                "owner": true,
-                "services": {
-                "receiptServiceUser": false,
-                "letterServiceUser": true,
-                "link": []
-                },
-                "link": [
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/messages",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/messages",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_message",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/messages",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document_to_inbox",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/inbox",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/contact_lists",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/contactlists",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_contact_list",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/contactlists",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/receipts",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/receipts",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/document_inbox",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/inbox",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/document_workarea",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/workarea",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/document_archive",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/archive",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         },
-                         {
-                         "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_folder",
-                         "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders",
-                         "media-type": "application/vnd.digipost-v2+json"
-                         }
-                         ]
-                }
-                ],
-    "language": {
-        "language": "nb",
-        "link": [
-                 {
-                 "rel": "https://dpost.camelon.os.ergo.no/post/relations/change_language",
-                 "uri": "https://dpost.camelon.os.ergo.no/post/api/language/change",
-                 "media-type": "application/vnd.digipost-v2+json"
-                 }
-                 ]
-    },
-    "role": "PRIVAT",
+    "needsContactInfoVerification": false,
+    "shouldShowTips": false,
+    "shouldShowTerms": false,
+    "invalidEmail": [],
+    "usedStorage": 15641167,
+    "totalAvailableStorage": 1073741824,
+    "introducedToDigipost": true,
     "link": [
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api",
-             "media-type": "application/vnd.digipost-v2+json"
-             },
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/session",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api/session",
-             "media-type": "application/vnd.digipost-v2+json"
-             },
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/logout",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api/logout",
-             "media-type": "application/vnd.digipost-v2+json"
-             },
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/search",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api/recipients/search",
-             "media-type": "application/vnd.digipost-v2+json"
-             },
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/autocomplete",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api/recipients/suggest",
-             "media-type": "application/vnd.digipost-v2+json"
-             },
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/verify_digipost_address",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api/recipients",
-             "media-type": "application/vnd.digipost-v2+json"
-             },
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/accounts",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts",
-             "media-type": "application/vnd.digipost-v2+json"
-             },
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/answers",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api/private/answers",
-             "media-type": "application/vnd.digipost-v2+json"
-             },
-             {
-             "rel": "https://dpost.camelon.os.ergo.no/post/relations/invite_user",
-             "uri": "https://dpost.camelon.os.ergo.no/post/api/private/invitations",
-             "media-type": "application/vnd.digipost-v2+json"
-             }
-             ]
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/update_account",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/account_settings",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/settings",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/mailbox_settings",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/mailboxsettings",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/messages",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/messages",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_message",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/messages",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/contact_lists",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/contactlists",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_contact_list",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/contactlists",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/receipts",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/receipts",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/document_inbox",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/inbox",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/close_account",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/move_mail",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/movemail/2939",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/completed_payment",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/payex/complete",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/completed_card_change",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/payex/completechange",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/token_list",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/tokens",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/banks",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/banks",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/current_bank_account",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/currentbankaccount",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/payments",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/payments",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/event_log",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/eventlogs",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/mailbox_access",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/access",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/tips",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/tips",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/offentlig_mailbox_choice",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/offentlig",
+        "media-type": "application/vnd.digipost-v2+json"
+      },
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/postpone_offentlig_mailbox_choice",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts/2939/offentlig/postpone",
+        "media-type": "application/vnd.digipost-v2+json"
+      }
+    ]
+  },
+  "settings": [
+    {
+      "name": "fakturabetaling.aktivert",
+      "value": "true"
+    },
+    {
+      "name": "web.privat.tilgjengelig",
+      "value": "true"
+    },
+    {
+      "name": "web.virksomhet.tilgjengelig",
+      "value": "true"
+    }
+  ],
+  "mailbox": [
+    {
+      "remainingStampsThisMonth": 100,
+      "unreadItemsInInbox": 35,
+      "usedStorage": 15641167,
+      "totalAvailableStorage": 1073741824,
+      "folders": {
+        "folder": [
+          {
+            "name": "Arkivet",
+            "id": 2913,
+            "icon": "BOX",
+            "link": [
+              {
+                "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
+                "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2913",
+                "media-type": "application/vnd.digipost-v2+json"
+              },
+              {
+                "rel": "https://dpost.camelon.os.ergo.no/post/relations/change_folder",
+                "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2913",
+                "media-type": "application/vnd.digipost-v2+json"
+              },
+              {
+                "rel": "https://dpost.camelon.os.ergo.no/post/relations/delete_folder",
+                "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2913",
+                "media-type": "application/vnd.digipost-v2+json"
+              },
+              {
+                "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document",
+                "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2913",
+                "media-type": "application/vnd.digipost-v2+json"
+              }
+            ]
+          },
+          {
+            "name": "Kjøkkenbenken",
+            "id": 2914,
+            "icon": "FOLDER",
+            "link": [
+              {
+                "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
+                "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2914",
+                "media-type": "application/vnd.digipost-v2+json"
+              },
+              {
+                "rel": "https://dpost.camelon.os.ergo.no/post/relations/change_folder",
+                "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2914",
+                "media-type": "application/vnd.digipost-v2+json"
+              },
+              {
+                "rel": "https://dpost.camelon.os.ergo.no/post/relations/delete_folder",
+                "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2914",
+                "media-type": "application/vnd.digipost-v2+json"
+              },
+              {
+                "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document",
+                "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders/2914",
+                "media-type": "application/vnd.digipost-v2+json"
+              }
+            ]
+          }
+        ],
+        "link": [
+          {
+            "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
+            "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders",
+            "media-type": "application/vnd.digipost-v2+json"
+          },
+          {
+            "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_folder",
+            "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders",
+            "media-type": "application/vnd.digipost-v2+json"
+          },
+          {
+            "rel": "https://dpost.camelon.os.ergo.no/post/relations/update_folders",
+            "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders",
+            "media-type": "application/vnd.digipost-v2+json"
+          }
+        ]
+      },
+      "name": "Dangfart Utnes",
+      "digipostaddress": "dangfart.utnes#2KNX",
+      "owner": true,
+      "services": {
+        "receiptServiceUser": false,
+        "letterServiceUser": true,
+        "link": []
+      },
+      "link": [
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/messages",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/messages",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_message",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/messages",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/upload_document_to_inbox",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/inbox",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/contact_lists",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/contactlists",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_contact_list",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/contactlists",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/receipts",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/receipts",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/document_inbox",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/documents/inbox",
+          "media-type": "application/vnd.digipost-v2+json"
+        },
+        {
+          "rel": "https://dpost.camelon.os.ergo.no/post/relations/create_folder",
+          "uri": "https://dpost.camelon.os.ergo.no/post/api/private/mailbox/2939/folders",
+          "media-type": "application/vnd.digipost-v2+json"
+        }
+      ]
+    }
+  ],
+  "language": {
+    "language": "nb",
+    "link": [
+      {
+        "rel": "https://dpost.camelon.os.ergo.no/post/relations/change_language",
+        "uri": "https://dpost.camelon.os.ergo.no/post/api/language/change",
+        "media-type": "application/vnd.digipost-v2+json"
+      }
+    ]
+  },
+  "role": "PRIVAT",
+  "link": [
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/self",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api",
+      "media-type": "application/vnd.digipost-v2+json"
+    },
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/session",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api/session",
+      "media-type": "application/vnd.digipost-v2+json"
+    },
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/logout",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api/logout",
+      "media-type": "application/vnd.digipost-v2+json"
+    },
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/search",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api/recipients/search",
+      "media-type": "application/vnd.digipost-v2+json"
+    },
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/autocomplete",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api/recipients/suggest",
+      "media-type": "application/vnd.digipost-v2+json"
+    },
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/verify_digipost_address",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api/recipients",
+      "media-type": "application/vnd.digipost-v2+json"
+    },
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/accounts",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api/private/accounts",
+      "media-type": "application/vnd.digipost-v2+json"
+    },
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/answers",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api/private/answers",
+      "media-type": "application/vnd.digipost-v2+json"
+    },
+    {
+      "rel": "https://dpost.camelon.os.ergo.no/post/relations/invite_user",
+      "uri": "https://dpost.camelon.os.ergo.no/post/api/private/invitations",
+      "media-type": "application/vnd.digipost-v2+json"
+    }
+  ]
 }

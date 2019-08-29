@@ -22,8 +22,6 @@ NSString *const kFolderEntityName;
 
 // Hard-coded folder names that we'll use until all folders are made dynamic in the Digipost system
 extern NSString *const kFolderInboxName;
-extern NSString *const kFolderWorkAreaName;
-extern NSString *const kFolderArchiveName;
 
 @class SHCDocument;
 @class SHCMailbox;

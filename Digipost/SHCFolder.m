@@ -22,8 +22,6 @@ NSString *const kFolderEntityName = @"Folder";
 
 // Hard-coded folder names that we'll use until all folders are made dynamic in the Digipost system
 NSString *const kFolderInboxName = @"Inbox";
-NSString *const kFolderWorkAreaName = @"WorkArea";
-NSString *const kFolderArchiveName = @"Archive";
 
 @implementation SHCFolder
 
@@ -72,10 +70,6 @@ NSString *const kFolderArchiveName = @"Archive";
     if (self.name){
         if ([self.name isEqualToString:kFolderInboxName]){
             return NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
-        }else if ([self.name isEqualToString:kFolderWorkAreaName]){
-            return NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
-        }else if ([self.name isEqualToString:kFolderArchiveName]){
-            return  NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
         }
     }
     return nil;

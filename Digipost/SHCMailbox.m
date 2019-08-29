@@ -24,8 +24,6 @@ NSString *const kMailboxEntityName = @"Mailbox";
 // API keys
 NSString *const kMailboxDigipostAddressAPIKey = @"digipostaddress";
 NSString *const kMailboxLinkDocumentInboxAPIKeySuffix = @"document_inbox";
-NSString *const kMailboxLinkDocumentWorkAreaAPIKeySuffix = @"document_workarea";
-NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
 NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 
 @implementation SHCMailbox
@@ -63,12 +61,6 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
                     NSDictionary *folderAttributes = nil;
                     if ([rel hasSuffix:kMailboxLinkDocumentInboxAPIKeySuffix]) {
                         folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderInboxName,
-                                             NSStringFromSelector(@selector(uri)): uri};
-                    } else if ([rel hasSuffix:kMailboxLinkDocumentWorkAreaAPIKeySuffix]) {
-                        folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderWorkAreaName,
-                                             NSStringFromSelector(@selector(uri)): uri};
-                    } else if ([rel hasSuffix:kMailboxLinkDocumentArchiveAPIKeySuffix]) {
-                        folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderArchiveName,
                                              NSStringFromSelector(@selector(uri)): uri};
                     } else if ([rel hasSuffix:kMailboxLinkReceiptsAPIKeySuffix]) {
                         mailbox.receiptsUri = uri;
