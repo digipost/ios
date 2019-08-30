@@ -22,8 +22,6 @@
 NSString *const kMailboxDigipostAddressAPIKey = @"digipostaddress";
 NSString *const kMailboxNameAPIKey = @"name";
 NSString *const kMailboxLinkDocumentInboxAPIKeySuffix = @"document_inbox";
-NSString *const kMailboxLinkDocumentWorkAreaAPIKeySuffix = @"document_workarea";
-NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
 NSString *const kMailboxLinkCreateFolderAPIKeySuffix = @"create_folder";
 NSString *const kMailboxLinkUpdateFoldersAPIKeySuffix = @"update_folders";
 NSString *const kMailboxLinkUploadToInboxFolderAPIKeySuffix = @"upload_document_to_inbox";

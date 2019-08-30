@@ -26,8 +26,6 @@
 NSString *const kFolderEntityName = @"Folder";
 
 NSString *const kFolderInboxName = @"Inbox";
-NSString *const kFolderWorkAreaName = @"WorkArea";
-NSString *const kFolderArchiveName = @"Archive";
 
 NSString *const kFolderIconKey = @"icon";
 NSString *const kFolderIdKey = @"id";
@@ -179,10 +177,6 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
     if (self.name) {
         if ([self.name isEqualToString:kFolderInboxName]) {
             return NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
-        } else if ([self.name isEqualToString:kFolderWorkAreaName]) {
-            return NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
-        } else if ([self.name isEqualToString:kFolderArchiveName]) {
-            return NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
         }
     }
     return self.name;

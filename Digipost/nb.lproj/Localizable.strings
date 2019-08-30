@@ -264,15 +264,8 @@
 /* Privacy */
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE" = "Les mer her";
 
-
-/* Archive */
-"FOLDER_NAME_ARCHIVE" = "Arkivet";
-
 /* Inbox */
 "FOLDER_NAME_INBOX" = "Postkassen";
-
-/* Workarea */
-"FOLDER_NAME_WORKAREA" = "Kjøkkenbenken";
 
 /* Fra */
 "GENERIC_FROM_LABEL" = "Fra";
