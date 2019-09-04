@@ -193,7 +193,6 @@ BOOL onGoingAuthentication = FALSE;
 
 -(void) showLogoutModal {
     showingLogoutModal = TRUE;
-    dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?") message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
@@ -224,7 +223,6 @@ BOOL onGoingAuthentication = FALSE;
             popPresenter.sourceView = rootNavController.topViewController.view;
             [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
         }
-    });
 }
 
 -(void) setLocalReAuthenticationTimer {
@@ -304,14 +302,7 @@ BOOL onGoingAuthentication = FALSE;
 
 -(void) removeAuthOverlayView {
     addedLocalAuthenticationOverlay = FALSE;
-    @try {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self->_localAuthenticationOverlayView removeFromSuperview];
-        });
-    }
-    @catch (NSException *exception)
-    {
-    }
+    [self.localAuthenticationOverlayView removeFromSuperview];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
