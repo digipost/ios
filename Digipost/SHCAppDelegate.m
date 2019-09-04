@@ -302,7 +302,9 @@ BOOL onGoingAuthentication = FALSE;
 
 -(void) removeAuthOverlayView {
     addedLocalAuthenticationOverlay = FALSE;
-    [self.localAuthenticationOverlayView removeFromSuperview];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.localAuthenticationOverlayView removeFromSuperview];
+    });
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
