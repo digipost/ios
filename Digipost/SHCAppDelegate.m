@@ -298,11 +298,7 @@ BOOL onGoingAuthentication = FALSE;
         addedLocalAuthenticationOverlay = TRUE;
         _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
         _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            [[UIApplication sharedApplication].keyWindow addSubview:_localAuthenticationOverlayView];
-        }else{
-            [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
-        }
+        [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
     }
 }
 
