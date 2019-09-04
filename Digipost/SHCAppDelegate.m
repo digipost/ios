@@ -175,7 +175,7 @@ BOOL onGoingAuthentication = FALSE;
     }];
     
     if(![LAStore devicePasscodeMinimumSet]){
-        [self checkLocalAuthentication];
+        [self showSetupLocalAuthenticationModal];
     }else if(!appIsActive && [OAuthToken isUserLoggedIn] && !onGoingAuthentication){
         [self checkLocalAuthentication];
     }else if ([OAuthToken isUserLoggedIn] && !showingLogoutModal) {
@@ -211,11 +211,19 @@ BOOL onGoingAuthentication = FALSE;
                                                               [self checkLocalAuthentication];
                                                           }]];
         
-        UINavigationController *rootNavController = (id)self.window.rootViewController;
-        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-        popPresenter.sourceView = rootNavController.topViewController.view;
         
-        [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            UISplitViewController *splitViewController = (id)self.window.rootViewController;
+            UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
+            UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+            popPresenter.sourceView = leftSideNavController.topViewController.view;
+            [leftSideNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+        }else{
+            UINavigationController *rootNavController = (id)self.window.rootViewController;
+            UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+            popPresenter.sourceView = rootNavController.topViewController.view;
+            [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+        }
     });
 }
 
@@ -271,11 +279,18 @@ BOOL onGoingAuthentication = FALSE;
                                                           onGoingAuthentication = FALSE;
                                                       }]];
 
-    UINavigationController *rootNavController = (id)self.window.rootViewController;
-    UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-    popPresenter.sourceView = rootNavController.topViewController.view;
-    
-    [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        UISplitViewController *splitViewController = (id)self.window.rootViewController;
+        UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
+        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+        popPresenter.sourceView = leftSideNavController.topViewController.view;
+        [leftSideNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+    }else{
+        UINavigationController *rootNavController = (id)self.window.rootViewController;
+        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+        popPresenter.sourceView = rootNavController.topViewController.view;
+        [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 -(void) addAuthOverlayView {
