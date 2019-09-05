@@ -248,13 +248,7 @@ BOOL onGoingAuthentication = FALSE;
                 [self removeAuthOverlayView];
             }else{
                 if(userCancel){
-                    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-                        [self showLogoutModal];
-                    } else{
-                        showingLogoutModal = TRUE;
-                        onGoingAuthentication = FALSE;
-                        [self userCanceledLocalAuthentication];
-                    }
+                    [self showLogoutModal];
                 }else if([errorText isEqualToString:@"Passcode not set"]){
                         [self showSetupLocalAuthenticationModal];
                 }
