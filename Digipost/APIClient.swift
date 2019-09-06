@@ -501,9 +501,6 @@ import AFNetworking
         fullToken?.refreshToken = nil
 
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
-        let alertController = UIAlertController.forcedLogoutAlertController()
-        let userInfo  : [AnyHashable: Any] = [ "alert" as NSObject : alertController as AnyObject]
-        NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil, userInfo: userInfo)
     }
 
     @objc func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(_ response: URLResponse) -> Bool {
