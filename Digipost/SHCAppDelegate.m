@@ -175,7 +175,7 @@ BOOL onGoingAuthentication = FALSE;
     }];
     
     if(![LAStore devicePasscodeMinimumSet]){
-        [self checkLocalAuthentication];
+        [self showSetupLocalAuthenticationModal];
     }else if(!appIsActive && [OAuthToken isUserLoggedIn] && !onGoingAuthentication){
         [self checkLocalAuthentication];
     }else if ([OAuthToken isUserLoggedIn] && !showingLogoutModal) {
@@ -193,7 +193,6 @@ BOOL onGoingAuthentication = FALSE;
 
 -(void) showLogoutModal {
     showingLogoutModal = TRUE;
-    dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?") message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
@@ -211,12 +210,19 @@ BOOL onGoingAuthentication = FALSE;
                                                               [self checkLocalAuthentication];
                                                           }]];
         
-        UINavigationController *rootNavController = (id)self.window.rootViewController;
-        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-        popPresenter.sourceView = rootNavController.topViewController.view;
         
-        [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
-    });
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            UISplitViewController *splitViewController = (id)self.window.rootViewController;
+            UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
+            UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+            popPresenter.sourceView = leftSideNavController.topViewController.view;
+            [leftSideNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+        }else{
+            UINavigationController *rootNavController = (id)self.window.rootViewController;
+            UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+            popPresenter.sourceView = rootNavController.topViewController.view;
+            [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+        }
 }
 
 -(void) setLocalReAuthenticationTimer {
@@ -242,13 +248,7 @@ BOOL onGoingAuthentication = FALSE;
                 [self removeAuthOverlayView];
             }else{
                 if(userCancel){
-                    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-                        [self showLogoutModal];
-                    } else{
-                        showingLogoutModal = TRUE;
-                        onGoingAuthentication = FALSE;
-                        [self userCanceledLocalAuthentication];
-                    }
+                    [self showLogoutModal];
                 }else if([errorText isEqualToString:@"Passcode not set"]){
                         [self showSetupLocalAuthenticationModal];
                 }
@@ -271,11 +271,18 @@ BOOL onGoingAuthentication = FALSE;
                                                           onGoingAuthentication = FALSE;
                                                       }]];
 
-    UINavigationController *rootNavController = (id)self.window.rootViewController;
-    UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-    popPresenter.sourceView = rootNavController.topViewController.view;
-    
-    [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        UISplitViewController *splitViewController = (id)self.window.rootViewController;
+        UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
+        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+        popPresenter.sourceView = leftSideNavController.topViewController.view;
+        [leftSideNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+    }else{
+        UINavigationController *rootNavController = (id)self.window.rootViewController;
+        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+        popPresenter.sourceView = rootNavController.topViewController.view;
+        [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+    }
 }
 
 -(void) addAuthOverlayView {
@@ -283,24 +290,15 @@ BOOL onGoingAuthentication = FALSE;
         addedLocalAuthenticationOverlay = TRUE;
         _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
         _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            [[UIApplication sharedApplication].keyWindow addSubview:_localAuthenticationOverlayView];
-        }else{
-            [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
-        }
+        [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
     }
 }
 
 -(void) removeAuthOverlayView {
     addedLocalAuthenticationOverlay = FALSE;
-    @try {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self->_localAuthenticationOverlayView removeFromSuperview];
-        });
-    }
-    @catch (NSException *exception)
-    {
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.localAuthenticationOverlayView removeFromSuperview];
+    });
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
