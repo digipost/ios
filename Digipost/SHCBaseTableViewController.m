@@ -14,9 +14,6 @@
 // limitations under the License.
 //
 
-#import "GAI.h"
-#import "GAIFields.h"
-#import "GAIDictionaryBuilder.h"
 #import "SHCBaseTableViewController.h"
 #import "POSModelManager.h"
 #import "POSRootResource.h"
@@ -94,15 +91,6 @@
         [self.tableView deselectRowAtIndexPath:indexPathForSelectedRow
                                       animated:YES];
     }
-
-    // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
-    // we'll manually track and submit screen hits.
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-
-    // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
-    [tracker set:kGAIScreenName
-           value:self.screenName];
-    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 
     if (self.needsReload) {
         self.needsReload = NO;

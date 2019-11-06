@@ -15,7 +15,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAI.h"
 @import SafariServices;
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
@@ -30,6 +29,6 @@ extern NSString *const kForgotPasswordWebViewIdentifier;
 // Notification names
 extern NSString *const kShowLoginViewControllerNotificationName;
 
-@interface SHCLoginViewController : GAITrackedViewController
+@interface SHCLoginViewController : UIViewController
 
 @end

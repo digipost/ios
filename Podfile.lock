@@ -28,7 +28,6 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
     - GoogleUtilities (~> 1.1)
-  - GoogleAnalytics (3.17.0)
   - GoogleCloudMessaging (1.2.0):
     - GoogleInterchangeUtilities (~> 1.0)
     - GoogleIPhoneUtilities (~> 1.0)
@@ -83,7 +82,6 @@ DEPENDENCIES:
   - Alamofire (~> 4.5.1)
   - Cartography (~> 3.0.0)
   - Google/CloudMessaging
-  - GoogleAnalytics (~> 3.17)
   - LUKeychainAccess (~> 2.0.2)
   - MRProgress (~> 0.7.0)
   - RNCryptor-objc (~> 3.0.4)
@@ -98,7 +96,6 @@ SPEC REPOS:
     - Cartography
     - GGLInstanceID
     - Google
-    - GoogleAnalytics
     - GoogleCloudMessaging
     - GoogleInterchangeUtilities
     - GoogleIPhoneUtilities
@@ -134,7 +131,6 @@ SPEC CHECKSUMS:
   Cartography: f8c899bb0f5cf20758644a8eea59a75e98a03a5d
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d536877ec602555b755cc28ce6fed104825c693c
-  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleCloudMessaging: 2f503711dac162dc08c0c418643210793335eca2
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleIPhoneUtilities: 63f25e93a3ddcb66884d182aab3a660d98f1479b
@@ -147,6 +143,6 @@ SPEC CHECKSUMS:
   SingleLineKeyboardResize: 9823c7bd4f7542e9829bab0a4714285d3394df85
   "UIAlertView+Blocks": a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-PODFILE CHECKSUM: 3affb5babf1523ebf1da2b2b69c6b410083aa493
+PODFILE CHECKSUM: fb8682f28ee2cd4bbbd5566fe68cfc338e15135a
 
 COCOAPODS: 1.6.0

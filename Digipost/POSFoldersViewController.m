@@ -46,9 +46,6 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kUploadFileSegueIdentifier = @"uploadFileSegue";
 NSString *const kContactViewSegue = @"contactViewSegue";
 
-// Google Analytics screen name
-NSString *const kFoldersViewControllerScreenName = @"Folders";
-
 NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue";
 
 NSString *const kEditFolderSegue = @"newFolderSegue";
@@ -87,7 +84,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     }
     self.owner = currentMailbox.owner;
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
-    self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
 
     [super viewDidLoad];

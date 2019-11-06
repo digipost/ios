@@ -14,9 +14,7 @@
 // limitations under the License.
 //
 
-#import "GAI.h"
-#import "GAIFields.h"
-#import "GAIDictionaryBuilder.h"
+
 #import <UIAlertView_blocks/UIAlertView+Blocks.h>
 #import "SHCAttachmentsViewController.h"
 #import "SHCAttachmentTableViewCell.h"
@@ -32,9 +30,6 @@
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushAttachmentsIdentifier = @"PushAttachments";
-
-// Google Analytics screen name
-NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 @interface SHCAttachmentsViewController ()
 
@@ -91,14 +86,8 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
                                       animated:YES];
     }
 
-    // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
-    // we'll manually track and submit screen hits.
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 
-    // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
-    [tracker set:kGAIScreenName
-           value:kAttachmentsViewControllerScreenName];
-    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
+
     self.attachments = [self attachmentsForCurrentDocument];
 }
 

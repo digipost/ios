@@ -22,15 +22,11 @@
 #import "NSURLRequest+QueryParameters.h"
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
-#import "GAIDictionaryBuilder.h"
 #import "oauth.h"
 #import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
-
-// Google Analytics screen name
-NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
 NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
@@ -57,7 +53,6 @@ Boolean tryToFillUsing1Password = false;
     [super viewDidLoad];
     
     [self clearCacheAndCookies];
-    self.screenName = kOAuthViewControllerScreenName;
     
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
     

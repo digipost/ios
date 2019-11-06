@@ -42,7 +42,6 @@
 #import "POSModelManager.h"
 #import "NSError+ExtraInfo.h"
 #import "POSMailbox+Methods.h"
-#import "GAIDictionaryBuilder.h"
 #import "POSOAuthManager.h"
 #import "UIView+AutoLayout.h"
 #import "oauth.h"

@@ -52,9 +52,6 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 NSString *const kaskForhigherAuthenticationLevelSegue = @"askForhigherAuthenticationLevelSegue";
 NSString *const kinvoiceOptionsSegue = @"invoiceOptionsSegue";
 
-// Google Analytics screen name
-NSString *const kLetterViewControllerScreenName = @"Letter";
-
 @interface POSLetterViewController () <SFSafariViewControllerDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate, SHCOAuthViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *informationBarButtonItem;
@@ -135,7 +132,6 @@ CGFloat extraMetadataConstraintHeight = 0;
     if (self.attachment) {
         [self setTitle:self.attachment.subject];
     }
-    self.screenName = kLetterViewControllerScreenName;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [[NSNotificationCenter defaultCenter] addObserver:self

@@ -25,7 +25,6 @@
 @property (strong, nonatomic) NSEntityDescription *baseEntity;
 @property (strong, nonatomic) NSArray *sortDescriptors;
 @property (strong, nonatomic) NSPredicate *predicate;
-@property (copy, nonatomic) NSString *screenName;
 @property (strong, nonatomic) POSRootResource *rootResource;
 
 // Override these methods in subclass

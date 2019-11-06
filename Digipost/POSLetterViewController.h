@@ -16,7 +16,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "GAI.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushLetterIdentifier;
@@ -24,7 +23,7 @@ extern NSString *const kPushLetterIdentifier;
 @class POSDocumentsViewController;
 @class POSAttachment;
 
-@interface POSLetterViewController : GAITrackedViewController <UISplitViewControllerDelegate, UIGestureRecognizerDelegate>
+@interface POSLetterViewController : UIViewController <UISplitViewControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
 @property (strong, nonatomic) POSAttachment *attachment;

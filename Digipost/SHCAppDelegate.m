@@ -15,11 +15,8 @@
 //
 
 #import "POSFolder+Methods.h"
-#import "GAI.h"
 #import "POSDocumentsViewController.h"
 #import "POSFoldersViewController.h"
-#import "GAITracker.h"
-#import "GAIFields.h"
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSModelManager.h"
 #import "POSUploadViewController.h"
@@ -33,9 +30,6 @@
 #import "Digipost-Swift.h"
 
 @interface SHCAppDelegate ()
-
-//@property (strong, nonatomic) DDFileLogger *fileLogger;
-@property (strong, nonatomic) id<GAITracker> googleAnalyticsTracker;
 
 //GCM
 @property(nonatomic, assign) BOOL connectedToGCM;
@@ -61,11 +55,9 @@ BOOL onGoingAuthentication = FALSE;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, 0) forBarMetrics:UIBarMetricsDefault];
     
     [AppVersionManager deleteOldTokensIfReinstall];
-    [self setupGoogleAnalytics];
     [SHCAppDelegate setupAppearance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
-    [[GAI sharedInstance] setTrackUncaughtExceptions:YES];
     [UserNotificationsUsage reportActivationState];
     return YES;
 }
@@ -466,11 +458,5 @@ BOOL onGoingAuthentication = FALSE;
 }
 #pragma mark - Private methods
 
-- (void)setupGoogleAnalytics {
-    [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
-    self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
-    [self.googleAnalyticsTracker set:kGAIAnonymizeIp value:[@YES stringValue]];
-    [GAI sharedInstance].dispatchInterval = 40.0;
-}
 
 @end
