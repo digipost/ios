@@ -146,23 +146,8 @@ CGFloat extraMetadataConstraintHeight = 0;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                     forViewController:self];
-        [self updateLeftBarButtonForIpad];
+        self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     }
-}
-
-- (void)updateLeftBarButtonForIpad
-{
-    UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
-        if (!leftBarButtonItem) {
-            leftBarButtonItem = self.navigationItem.leftBarButtonItem;
-        }
-        [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-        leftBarButtonItem.title = @" ";
-        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
-                                         animated:YES];
-        [leftBarButtonItem setAction:@selector(showSideMenu:)];
-        [leftBarButtonItem setTarget:self];
-    
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -374,6 +359,11 @@ CGFloat extraMetadataConstraintHeight = 0;
     return UIInterfaceOrientationIsPortrait(orientation);
 }
 
+- (void)splitViewController:(UISplitViewController *)svc willChangeToDisplayMode:(UISplitViewControllerDisplayMode)displayMode{
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
+    
+}
+
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
     self.masterViewControllerPopoverController = popoverController;
@@ -387,9 +377,7 @@ CGFloat extraMetadataConstraintHeight = 0;
             }
         }
     }
-
-    [self updateLeftBarButtonItem:barButtonItem
-                forViewController:topViewController];
+    self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -458,7 +446,7 @@ CGFloat extraMetadataConstraintHeight = 0;
 
     // used to fetch attachment if something has deleted it from store and reinserted it
     self.currentAttachmentURI = attachment.uri;
-
+    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if (self.masterViewControllerPopoverController) {
             [self.masterViewControllerPopoverController dismissPopoverAnimated:YES];
@@ -1378,17 +1366,6 @@ CGFloat extraMetadataConstraintHeight = 0;
           [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
         }
         failure:^(NSError *error) {
-          NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-          if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-              //                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-              //                                                                       // We were unauthorized, due to the session being invalid.
-              //                                                                       // Let's retry in the next run loop
-              //                                                                       [self performSelector:@selector(updateDocuments) withObject:nil afterDelay:0.0];
-              //
-              //                                                                       return;
-              //                                                                   }
-          }
-
           [UIAlertView showWithTitle:error.errorTitle
                              message:[error localizedDescription]
                    cancelButtonTitle:nil
@@ -1409,23 +1386,9 @@ CGFloat extraMetadataConstraintHeight = 0;
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:YES];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        [self updateLeftBarButtonForIpad];
+        self.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
     }
-
-    if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
-        [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
-                                                           permittedArrowDirections:UIPopoverArrowDirectionAny
-                                                                           animated:YES];
-    } else {
-        if ([UIApplication sharedApplication].statusBarOrientation != (UIInterfaceOrientationLandscapeRight | UIInterfaceOrientationLandscapeLeft)) {
-            [leftBarButtonItem setAction:@selector(showSideMenu:)];
-            [leftBarButtonItem setTarget:self];
-        }
-    }
-}
-
-- (void)showSideMenu:(id)sender
-{
+    
     if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
         [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
                                                            permittedArrowDirections:UIPopoverArrowDirectionAny
