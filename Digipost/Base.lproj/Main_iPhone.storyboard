@@ -56,7 +56,7 @@
         <!--OAuth View Controller-->
         <scene sceneID="Pcj-pr-X4N">
             <objects>
-                <viewController storyboardIdentifier="authViewController" id="9fB-qu-XvY" userLabel="OAuth View Controller" customClass="SHCOAuthViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="authViewController" modalPresentationStyle="fullScreen" id="9fB-qu-XvY" userLabel="OAuth View Controller" customClass="SHCOAuthViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2pb-Qm-yKU"/>
                         <viewControllerLayoutGuide type="bottom" id="N1L-gO-1VU"/>
@@ -66,7 +66,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Php-Un-cUt">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="682"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="640"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
                                 <connections>
@@ -77,7 +77,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="N1L-gO-1VU" firstAttribute="top" secondItem="Php-Un-cUt" secondAttribute="bottom" constant="-34" id="Tnf-mx-XoC"/>
+                            <constraint firstItem="N1L-gO-1VU" firstAttribute="top" secondItem="Php-Un-cUt" secondAttribute="bottom" constant="8" symbolic="YES" id="Tnf-mx-XoC"/>
                             <constraint firstAttribute="trailing" secondItem="Php-Un-cUt" secondAttribute="trailing" id="YFt-gT-Scp"/>
                             <constraint firstItem="Php-Un-cUt" firstAttribute="leading" secondItem="ZPk-z1-lXj" secondAttribute="leading" id="arA-MR-04p"/>
                             <constraint firstItem="Php-Un-cUt" firstAttribute="top" secondItem="2pb-Qm-yKU" secondAttribute="bottom" id="esh-mt-071"/>
@@ -120,9 +120,9 @@
         <!--Folders View Controller-->
         <scene sceneID="Ige-oa-FSO">
             <objects>
-                <tableViewController storyboardIdentifier="FoldersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J0H-vT-0Kh" customClass="POSFoldersViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FoldersViewController" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J0H-vT-0Kh" customClass="POSFoldersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="50" sectionFooterHeight="22" id="qSR-YO-R1z">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.23529411764705882" green="0.24313725490196078" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -347,9 +347,9 @@
         <!--Documents View Controller-->
         <scene sceneID="ch1-fS-EKn">
             <objects>
-                <tableViewController storyboardIdentifier="documentsViewControllerIdentifier" id="mgI-2c-YJ5" customClass="POSDocumentsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="documentsViewControllerIdentifier" modalPresentationStyle="fullScreen" id="mgI-2c-YJ5" customClass="POSDocumentsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="9C2-cR-mPd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92549019607843142" green="0.93333333333333335" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -680,7 +680,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uaa-Ss-oAC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -700,11 +700,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Fwo-ay-hU3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="r7i-6C-G8C">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="626"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="648"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUO-Up-hZk">
-                                <rect key="frame" x="4" y="0.0" width="406" height="626"/>
+                                <rect key="frame" x="4" y="0.0" width="406" height="648"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="delegate" destination="BPe-EW-mWm" id="dW8-YE-wid"/>
@@ -978,7 +978,7 @@
             <objects>
                 <tableViewController id="JNU-sI-t0Q" customClass="SHCAttachmentsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="2nb-NT-QSp">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -1042,11 +1042,11 @@
                         <viewControllerLayoutGuide type="bottom" id="BUU-1z-gTZ"/>
                     </layoutGuides>
                     <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="OaE-pH-e8d">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zit-7G-gfu" userLabel="Scroll">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YZB-hn-vot" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="3" width="414" height="892"/>
@@ -1067,7 +1067,7 @@
                                                 </constraints>
                                             </view>
                                             <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zX6-Zm-f5i">
-                                                <rect key="frame" x="0.0" y="1" width="414" height="858"/>
+                                                <rect key="frame" x="0.0" y="1" width="414" height="912"/>
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                 <connections>
@@ -1095,12 +1095,12 @@
                                 </constraints>
                             </scrollView>
                             <progressView opaque="NO" alpha="0.0" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hqz-1p-hA0">
-                                <rect key="frame" x="40" y="419" width="334" height="2"/>
+                                <rect key="frame" x="40" y="446" width="334" height="2"/>
                                 <color key="progressTintColor" red="0.89019607840000003" green="0.1764705882" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="trackTintColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </progressView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="xQW-NC-XrA" userLabel="Error Label">
-                                <rect key="frame" x="20" y="411" width="374" height="20.333333333333314"/>
+                                <rect key="frame" x="20" y="438" width="374" height="20.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="249" constant="21" id="OY5-X0-I04"/>
                                 </constraints>
@@ -1109,13 +1109,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZq-Nf-q1o" userLabel="Shadow View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GRH-Ar-m5o" userLabel="Popover View" customClass="POSLetterPopoverView">
-                                        <rect key="frame" x="32" y="62" width="349" height="665"/>
+                                        <rect key="frame" x="32" y="62" width="349" height="675"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="48" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="akV-fc-y5R">
-                                                <rect key="frame" x="7" y="46.666666666666686" width="334" height="611.33333333333326"/>
+                                                <rect key="frame" x="7" y="46.666666666666686" width="334" height="621.33333333333326"/>
                                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="separatorColor" red="0.88783907890319824" green="0.90508997440338135" blue="0.93483465909957886" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <prototypes>
@@ -1264,7 +1264,7 @@
                         <outlet property="stackView" destination="s9u-vG-bGb" id="zne-7D-Ekk"/>
                         <outlet property="webView" destination="zX6-Zm-f5i" id="BhC-Bg-D6j"/>
                         <segue destination="iIu-uD-AEh" kind="unwind" identifier="toFolders" unwindAction="unwindToFoldersViewController:" id="Xu6-WM-Bts"/>
-                        <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="FEz-mA-3eK"/>
+                        <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" modalPresentationStyle="fullScreen" id="FEz-mA-3eK"/>
                         <segue destination="EwX-bB-WQQ" kind="push" identifier="invoiceOptionsSegue" id="osB-jZ-rzm"/>
                         <segue destination="D1c-ii-iU5" kind="push" identifier="showExternalLinkWebview" id="buk-5Z-hPs"/>
                     </connections>
@@ -1374,11 +1374,11 @@
                         <viewControllerLayoutGuide type="bottom" id="JNZ-mE-fmo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EvH-ac-2xd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U8a-u2-JL2">
-                                <rect key="frame" x="0.0" y="45" width="414" height="763"/>
+                                <rect key="frame" x="0.0" y="89" width="414" height="773"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -1408,7 +1408,7 @@
                                 </items>
                             </navigationBar>
                             <toolbar autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zjs-AX-cCy">
-                                <rect key="frame" x="0.0" y="798" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="852" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items/>
                             </toolbar>
