@@ -53,7 +53,7 @@
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
             <objects>
-                <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
+                <navigationController modalPresentationStyle="fullScreen" id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DjV-YW-jjY">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
@@ -144,7 +144,7 @@
         <!--Brev-->
         <scene sceneID="y5s-iI-wIP">
             <objects>
-                <viewController id="9Yb-L2-1ej" customClass="POSLetterViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="9Yb-L2-1ej" customClass="POSLetterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U99-DD-r9a"/>
                         <viewControllerLayoutGuide type="bottom" id="OVC-GN-Ngo"/>
@@ -523,14 +523,8 @@
                                             <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gg-vQ-dze">
-                                            <rect key="frame" x="17" y="65" width="217" height="14"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                            <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-list-icon-unpaid" translatesAutoresizingMaskIntoConstraints="NO" id="ZIe-sk-VbV">
-                                            <rect key="frame" x="15" y="67" width="0.0" height="15"/>
+                                            <rect key="frame" x="7" y="67" width="14" height="15"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJI-uk-1YP" userLabel="Sender Label">
                                             <rect key="frame" x="25" y="47" width="209" height="15.5"/>
@@ -538,36 +532,43 @@
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invoice unpaid" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gg-vQ-dze">
+                                            <rect key="frame" x="25" y="67" width="209" height="14"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="centerY" secondItem="Qcx-VB-dgT" secondAttribute="centerY" constant="-22.5" id="1Dq-iw-cwm"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="70" id="4cd-9h-veI"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="fJI-uk-1YP" secondAttribute="bottom" constant="18.5" id="5CJ-JE-Zdf"/>
                                         <constraint firstItem="KbF-uJ-8np" firstAttribute="leading" secondItem="Dh8-Vl-Dpn" secondAttribute="trailing" constant="3" id="6PN-y9-7Kp"/>
                                         <constraint firstAttribute="bottom" secondItem="Dh8-Vl-Dpn" secondAttribute="bottom" constant="46.5" id="Fs9-9C-rQR"/>
                                         <constraint firstItem="KbF-uJ-8np" firstAttribute="top" secondItem="rLJ-CH-eiQ" secondAttribute="top" constant="23" id="GfC-Kl-zj4"/>
+                                        <constraint firstItem="ZIe-sk-VbV" firstAttribute="top" secondItem="Qcx-VB-dgT" secondAttribute="bottom" constant="3" id="IaC-o1-dle"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="Qcx-VB-dgT" secondAttribute="trailing" constant="5" id="J3A-jf-3dd"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Dh8-Vl-Dpn" secondAttribute="trailing" constant="70" id="K75-sV-jav"/>
-                                        <constraint firstItem="4gg-vQ-dze" firstAttribute="leading" secondItem="ZIe-sk-VbV" secondAttribute="trailing" constant="5" id="K7r-yk-mqt"/>
                                         <constraint firstItem="fJI-uk-1YP" firstAttribute="top" secondItem="rLJ-CH-eiQ" secondAttribute="top" constant="47" id="QFT-eH-pLA"/>
-                                        <constraint firstItem="ZIe-sk-VbV" firstAttribute="top" secondItem="Qcx-VB-dgT" secondAttribute="bottom" constant="3" id="Rlr-zQ-avW"/>
                                         <constraint firstItem="Qcx-VB-dgT" firstAttribute="top" secondItem="Pmt-A4-NGA" secondAttribute="bottom" constant="9" id="S7T-Xf-C8t"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="KbF-uJ-8np" secondAttribute="trailing" id="U6R-jZ-4HS"/>
-                                        <constraint firstItem="4gg-vQ-dze" firstAttribute="top" secondItem="KbF-uJ-8np" secondAttribute="bottom" constant="21" id="YPo-oK-cZK"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="4gg-vQ-dze" secondAttribute="trailing" constant="70" id="dGq-t1-lNS"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="KbF-uJ-8np" secondAttribute="trailing" id="eIv-0R-2Xk"/>
-                                        <constraint firstItem="ZIe-sk-VbV" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leadingMargin" constant="-1" id="g5V-y0-OQe"/>
                                         <constraint firstItem="fJI-uk-1YP" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="25" id="gMJ-47-xuX"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="top" secondItem="rLJ-CH-eiQ" secondAttribute="topMargin" constant="13" id="lWV-we-mLB"/>
                                         <constraint firstItem="Qcx-VB-dgT" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="7" id="mP6-Qa-bJc"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="25" id="nRQ-iJ-TFl"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="Pmt-A4-NGA" secondAttribute="trailing" constant="5" id="owg-D9-mVw"/>
                                         <constraint firstItem="Pmt-A4-NGA" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="7" id="pRn-Zj-P9E"/>
-                                        <constraint firstItem="4gg-vQ-dze" firstAttribute="leading" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="-217" id="rxx-WV-sTZ"/>
+                                        <constraint firstItem="4gg-vQ-dze" firstAttribute="top" secondItem="fJI-uk-1YP" secondAttribute="bottom" constant="4.5" id="rBU-pT-1bt"/>
+                                        <constraint firstItem="ZIe-sk-VbV" firstAttribute="leading" secondItem="Qcx-VB-dgT" secondAttribute="trailing" constant="-13.000000000000171" id="wjp-Xa-JUK"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="KbF-uJ-8np" secondAttribute="trailing" id="x72-Vo-fUY"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4gg-vQ-dze" secondAttribute="trailing" constant="86" id="SBQ-zE-9lA"/>
+                                    <constraint firstItem="4gg-vQ-dze" firstAttribute="leading" secondItem="76K-oo-2Qq" secondAttribute="leading" constant="25" id="i3p-dc-rU0"/>
+                                    <constraint firstAttribute="trailing" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="86" id="mgl-Sb-UMl"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="attachmentImageView" destination="Qcx-VB-dgT" id="a9f-sW-Adp"/>
                                     <outlet property="dateLabel" destination="KbF-uJ-8np" id="DA9-md-Ur8"/>
@@ -594,7 +595,7 @@
                                             <color key="trackTintColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </progressView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILE NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aK1-DW-88W" userLabel="File Name Label">
-                                            <rect key="frame" x="30" y="33.5" width="198" height="21"/>
+                                            <rect key="frame" x="30" y="33.5" width="252" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="oMR-Te-ePs"/>
                                             </constraints>
@@ -603,9 +604,8 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="DATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grF-fj-pvY" userLabel="Date Label">
-                                            <rect key="frame" x="223" y="33" width="89" height="21"/>
+                                            <rect key="frame" x="277" y="33" width="27" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="89" id="E0J-yL-AFT"/>
                                                 <constraint firstAttribute="height" constant="21" id="zie-L9-gtM"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="11"/>
@@ -620,7 +620,6 @@
                                         <constraint firstItem="grF-fj-pvY" firstAttribute="top" secondItem="xJt-8C-5BU" secondAttribute="top" constant="33" id="Ze8-go-bNx"/>
                                         <constraint firstItem="grF-fj-pvY" firstAttribute="leading" secondItem="aK1-DW-88W" secondAttribute="trailing" constant="-5" id="gf0-wE-4HX"/>
                                         <constraint firstAttribute="bottom" secondItem="aK1-DW-88W" secondAttribute="bottom" constant="54.5" id="rWF-5K-ypL"/>
-                                        <constraint firstAttribute="trailing" secondItem="grF-fj-pvY" secondAttribute="trailing" constant="8" id="tUG-cL-ZCO"/>
                                         <constraint firstItem="grF-fj-pvY" firstAttribute="trailing" secondItem="xJt-8C-5BU" secondAttribute="trailingMargin" id="vaF-2Y-dDe"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1406,7 +1405,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zbK-2F-FJp"/>
-        <segue reference="eke-e6-LJU"/>
+        <segue reference="AVp-X0-I0h"/>
         <segue reference="gXC-zd-OIB"/>
     </inferredMetricsTieBreakers>
 </document>
