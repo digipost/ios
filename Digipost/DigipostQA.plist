@@ -68,6 +68,8 @@
 	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Digipost trenger tilgang for at du skal kunne åpne appen.</string>
+	<key>NSMainNibFile</key>
+	<string>LoginView</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
 	<key>NSRemindersUsageDescription</key>
@@ -78,8 +80,6 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>LoginView</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main_iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>
