@@ -46,7 +46,13 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         refreshControl?.tintColor = UIColor.digipostGreyOne()
         refreshControl?.addTarget(self, action: #selector(AccountViewController.refreshContentFromServer), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl!)
+        configureTableView()
         
+        let appDelegate: SHCAppDelegate = UIApplication.shared.delegate as! SHCAppDelegate
+        appDelegate.initGCM();
+    }
+    
+    func configureTableView() {
         // Configure Tableview
         
         tableView.register(UINib(nibName: Constants.Account.mainAccountCellNibName, bundle: Bundle.main), forCellReuseIdentifier: Constants.Account.mainAccountCellIdentifier)
@@ -65,8 +71,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
         
-        let appDelegate: SHCAppDelegate = UIApplication.shared.delegate as! SHCAppDelegate
-        appDelegate.initGCM();
     }
     
     @objc func refreshContentFromServer() {
@@ -112,10 +116,13 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         }
     }
     
-    func updateContentsFromServerUseInitiateRequest(_ userDidInitiateRequest: Int) {
     
+    func updateContentsFromServerUseInitiateRequest(_ userDidInitiateRequest: Int) {
         APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
             POSModelManager.shared().updateRootResource(attributes: responseDictionary)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                self.configureTableView()
+            }
             if let actualRefreshControl = self.refreshControl {
                 actualRefreshControl.endRefreshing()
             }
