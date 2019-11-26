@@ -42,12 +42,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             
         }
         
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            if POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) != nil{
-                performSegue(withIdentifier: "gotoDocumentsFromAccountsSegue", sender: self)
-            }
-        }
-        
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = UIColor.digipostGreyOne()
         refreshControl?.addTarget(self, action: #selector(AccountViewController.refreshContentFromServer), for: UIControlEvents.valueChanged)
