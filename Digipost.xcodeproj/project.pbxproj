@@ -145,7 +145,6 @@
 		EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
 		EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
-		EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
 		EC5EBC991B564EBD00FCAB7D /* UISegmentedControl+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5EBC981B564EBD00FCAB7D /* UISegmentedControl+Styling.swift */; };
 		EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
@@ -327,7 +326,6 @@
 		F8AE1C7E1CD374B40009B2F9 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		F8AE1C7F1CD374B40009B2F9 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
 		F8AE1C801CD374B40009B2F9 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
-		F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */; };
 		F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
 		F8AE1C851CD374B40009B2F9 /* SHCBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */; };
@@ -612,8 +610,6 @@
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonreg-webfont.ttf"; sourceTree = "<group>"; };
 		EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
-		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
-		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
 		EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncreaseSecurityLevelViewController.swift; sourceTree = "<group>"; };
 		EC5EBC981B564EBD00FCAB7D /* UISegmentedControl+Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Styling.swift"; sourceTree = "<group>"; };
 		EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Localization.swift"; sourceTree = "<group>"; };
@@ -999,8 +995,6 @@
 				EC2484161B206F2B00FC372C /* UIImageView+Color.swift */,
 				EC93622719393515006E85FA /* NSNumber+JsonParsing.h */,
 				EC93622819393515006E85FA /* NSNumber+JsonParsing.m */,
-				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
-				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
 				ECB4C65719B725ED00C1C748 /* NSString+Convenience.h */,
 				ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */,
 				EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */,
@@ -1842,7 +1836,6 @@
 				83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */,
 				ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */,
-				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				9C962A0F1EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				F81D61C222E8490C00827289 /* POSEvent.swift in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
@@ -2027,7 +2020,6 @@
 				F8AE1C7F1CD374B40009B2F9 /* APIResponse.swift in Sources */,
 				9C962A111EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				F8AE1C801CD374B40009B2F9 /* POSMailbox.m in Sources */,
-				F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */,
 				F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */,
 				F81D61C422E8490C00827289 /* POSEvent.swift in Sources */,
 				F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */,
@@ -2288,7 +2280,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 243;
+				CURRENT_PROJECT_VERSION = 244;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2318,7 +2310,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.4;
+				MARKETING_VERSION = 3.3.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2347,7 +2339,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 243;
+				CURRENT_PROJECT_VERSION = 244;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2377,7 +2369,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.4;
+				MARKETING_VERSION = 3.3.5;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2490,7 +2482,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 243;
+				CURRENT_PROJECT_VERSION = 244;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2522,7 +2514,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.4;
+				MARKETING_VERSION = 3.3.5;
 				MODULE_NAME = DigipostQA;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.qa;
@@ -2552,7 +2544,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 243;
+				CURRENT_PROJECT_VERSION = 244;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2584,7 +2576,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.4;
+				MARKETING_VERSION = 3.3.5;
 				MODULE_NAME = DigipostQA;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.qa;
