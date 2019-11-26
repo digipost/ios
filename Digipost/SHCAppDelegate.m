@@ -337,6 +337,8 @@ BOOL onGoingAuthentication = FALSE;
         NSMutableArray *newViewControllerArray = [NSMutableArray array];
         if ([navController.viewControllers[0] isKindOfClass:[SHCLoginViewController class]]) {
             SHCLoginViewController *loginViewController = navController.viewControllers[0];
+            loginViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            
             [newViewControllerArray addObject:loginViewController];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [navController setViewControllers:newViewControllerArray animated:YES];
