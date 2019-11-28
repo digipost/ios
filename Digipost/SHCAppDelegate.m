@@ -233,6 +233,8 @@ BOOL onGoingAuthentication = FALSE;
                     [self showLogoutModal];
                 }else if([errorText isEqualToString:@"Passcode not set"]){
                         [self showSetupLocalAuthenticationModal];
+                }else{
+                    [self userCanceledLocalAuthentication];
                 }
             }
         }];
