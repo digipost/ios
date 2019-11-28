@@ -216,8 +216,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             letterViewController.attachment = nil
         }
         
-        APIClient.sharedClient.logoutThenDeleteAllStoredData()
         dataSource?.stopListeningToCoreDataChanges()
+        APIClient.sharedClient.logoutThenDeleteAllStoredData()
 
         appDelegate.showLoginView()
     }
