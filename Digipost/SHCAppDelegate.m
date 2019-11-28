@@ -185,6 +185,7 @@ BOOL onGoingAuthentication = FALSE;
 
 -(void) showLogoutModal {
     showingLogoutModal = TRUE;
+    dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?") message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
@@ -201,20 +202,8 @@ BOOL onGoingAuthentication = FALSE;
                                                               onGoingAuthentication = FALSE;
                                                               [self checkLocalAuthentication];
                                                           }]];
-        
-        
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            UISplitViewController *splitViewController = (id)self.window.rootViewController;
-            UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
-            UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-            popPresenter.sourceView = leftSideNavController.topViewController.view;
-            [leftSideNavController.topViewController presentViewController:alertController animated:YES completion:nil];
-        }else{
-            UINavigationController *rootNavController = (id)self.window.rootViewController;
-            UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-            popPresenter.sourceView = rootNavController.topViewController.view;
-            [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
-        }
+        [(id)self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+    });
 }
 
 -(void) setLocalReAuthenticationTimer {
