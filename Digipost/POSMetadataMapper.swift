@@ -81,13 +81,21 @@ import Foundation
             if let streetAdress = location["streetAddress"] as? String {
                 event.streetAddress = streetAdress
             }
+            if let streetAdress2 = location["streetAddress2"] as? String {
+                event.streetAddress2 = streetAdress2
+            }
             if let postalCode = location["postalCode"] as? String {
                 event.postalCode = postalCode
             }
             if let city = location["city"] as? String {
                 event.city = city
             }
-            event.address = "\(event.streetAddress) \n\(event.postalCode) \(event.city)"
+            if let country = location["country"] as? String {
+                event.country = country
+            }
+            
+            let optionalExtraStreetAddress = event.streetAddress2 != "" ? "\n \(event.streetAddress2)" : ""
+            event.address = "\(event.streetAddress) \(optionalExtraStreetAddress) \n\(event.postalCode) \(event.city) \n\(event.country)"
         }
         
         if let timeframes = metadata.json["time"] as? [Dictionary<String, Any>]{
@@ -112,7 +120,7 @@ import Foundation
             }
         }
         
-        if let barcode = metadata.json["barcode"] as? Dictionary<String, Any>{45346345
+        if let barcode = metadata.json["barcode"] as? Dictionary<String, Any>{
             event.barcodes.append(POSBarcode(value: barcode["barcodeValue"] as? String , type: barcode["barcodeType"] as? String, text: barcode["barcodeText"] as? String, label: metadata.json["barcodeLabel"] as? String))
         }
     
@@ -151,22 +159,29 @@ import Foundation
         if let place = metadata.json["place"] as? String {
             appointment.place = place
         }
+        print(metadata.description)
         
-        if let location = metadata.json["address"] as? Dictionary<String, String> {
-            if let streetAdress = location["streetAddress"] {
+        if let location = metadata.json["address"] as? Dictionary<String, Any> {
+            if let streetAdress = location["streetAddress"] as? String {
                 appointment.streetAddress = streetAdress
             }
-            
-            if let postalCode = location["postalCode"] {
+            if let streetAdress2 = location["streetAddress2"] as? String {
+                appointment.streetAddress2 = streetAdress2
+            }
+            if let postalCode = location["postalCode"] as? String {
                 appointment.postalCode = postalCode
             }
-            
-            if let city = location["city"] {
+            if let city = location["city"] as? String {
                 appointment.city = city
             }
+            if let country = location["country"] as? String {
+                appointment.country = country
+            }
+            let optionalExtraStreetAddress = appointment.streetAddress2 != "" ? "\n \(appointment.streetAddress2)" : ""
             
-            appointment.address = "\(appointment.streetAddress) \n\(appointment.postalCode) \(appointment.city)"
+            appointment.address = "\(appointment.streetAddress) \(optionalExtraStreetAddress) \n\(appointment.postalCode) \(appointment.city) \n\(appointment.country)"
         }
+        
         
         if let infoList = metadata.json["info"] as? [[String: String]] {
             if infoList.count > 0 {

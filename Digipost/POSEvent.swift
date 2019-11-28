@@ -22,8 +22,10 @@ class POSEvent : POSMetadataObject {
     var descriptionText = ""
     var place = ""
     var streetAddress = ""
+    var streetAddress2 = ""
     var postalCode = ""
     var city = ""
+    var country = ""
     var address = ""
     var timeframes = [POSTimeframe]()
     var barcodes = [POSBarcode]()
