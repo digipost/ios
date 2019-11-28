@@ -258,7 +258,8 @@ BOOL onGoingAuthentication = FALSE;
 -(void) addAuthOverlayView {
     if(!addedLocalAuthenticationOverlay){
         addedLocalAuthenticationOverlay = TRUE;
-        _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
+        CGRect frame = CGRectMake(self.window.frame.origin.x/2, self.window.frame.origin.y/2, self.window.frame.size.height*3, self.window.frame.size.width*3);
+        _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:frame];
         _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
         [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
     }
