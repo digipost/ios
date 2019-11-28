@@ -221,7 +221,8 @@ BOOL onGoingAuthentication = FALSE;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
     onGoingAuthentication = TRUE;
-    if(![LAStore isValidAuthenticationAndTimestamp] || !appIsActive){
+    
+    if(![LAStore isValidAuthenticationAndTimestamp] || ([LAStore isValidAuthenticationAndTimestamp] && !appIsActive)){
         [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* errorText, BOOL userCancel) {
             if(success){
                 appIsActive = TRUE;
