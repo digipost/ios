@@ -15,11 +15,8 @@
 //
 
 #import "POSFolder+Methods.h"
-#import "GAI.h"
 #import "POSDocumentsViewController.h"
 #import "POSFoldersViewController.h"
-#import "GAITracker.h"
-#import "GAIFields.h"
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSModelManager.h"
 #import "POSUploadViewController.h"
@@ -33,9 +30,6 @@
 #import "Digipost-Swift.h"
 
 @interface SHCAppDelegate ()
-
-//@property (strong, nonatomic) DDFileLogger *fileLogger;
-@property (strong, nonatomic) id<GAITracker> googleAnalyticsTracker;
 
 //GCM
 @property(nonatomic, assign) BOOL connectedToGCM;
@@ -61,11 +55,9 @@ BOOL onGoingAuthentication = FALSE;
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, 0) forBarMetrics:UIBarMetricsDefault];
     
     [AppVersionManager deleteOldTokensIfReinstall];
-    [self setupGoogleAnalytics];
     [SHCAppDelegate setupAppearance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
-    [[GAI sharedInstance] setTrackUncaughtExceptions:YES];
     [UserNotificationsUsage reportActivationState];
     return YES;
 }
@@ -193,6 +185,7 @@ BOOL onGoingAuthentication = FALSE;
 
 -(void) showLogoutModal {
     showingLogoutModal = TRUE;
+    dispatch_async(dispatch_get_main_queue(), ^{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?") message:@"" preferredStyle:UIAlertControllerStyleAlert];
         
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
@@ -209,20 +202,8 @@ BOOL onGoingAuthentication = FALSE;
                                                               onGoingAuthentication = FALSE;
                                                               [self checkLocalAuthentication];
                                                           }]];
-        
-        
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            UISplitViewController *splitViewController = (id)self.window.rootViewController;
-            UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
-            UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-            popPresenter.sourceView = leftSideNavController.topViewController.view;
-            [leftSideNavController.topViewController presentViewController:alertController animated:YES completion:nil];
-        }else{
-            UINavigationController *rootNavController = (id)self.window.rootViewController;
-            UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-            popPresenter.sourceView = rootNavController.topViewController.view;
-            [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
-        }
+        [(id)self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
+    });
 }
 
 -(void) setLocalReAuthenticationTimer {
@@ -240,7 +221,8 @@ BOOL onGoingAuthentication = FALSE;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
     onGoingAuthentication = TRUE;
-    if(![LAStore isValidAuthenticationAndTimestamp] || !appIsActive){
+    
+    if(![LAStore isValidAuthenticationAndTimestamp] || ([LAStore isValidAuthenticationAndTimestamp] && !appIsActive)){
         [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* errorText, BOOL userCancel) {
             if(success){
                 appIsActive = TRUE;
@@ -250,7 +232,7 @@ BOOL onGoingAuthentication = FALSE;
                 if(userCancel){
                     [self showLogoutModal];
                 }else if([errorText isEqualToString:@"Passcode not set"]){
-                        [self showSetupLocalAuthenticationModal];
+                    [self showSetupLocalAuthenticationModal];
                 }
             }
         }];
@@ -270,25 +252,14 @@ BOOL onGoingAuthentication = FALSE;
                                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
                                                           onGoingAuthentication = FALSE;
                                                       }]];
-
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (id)self.window.rootViewController;
-        UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
-        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-        popPresenter.sourceView = leftSideNavController.topViewController.view;
-        [leftSideNavController.topViewController presentViewController:alertController animated:YES completion:nil];
-    }else{
-        UINavigationController *rootNavController = (id)self.window.rootViewController;
-        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-        popPresenter.sourceView = rootNavController.topViewController.view;
-        [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
-    }
+    [(id)self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void) addAuthOverlayView {
     if(!addedLocalAuthenticationOverlay){
         addedLocalAuthenticationOverlay = TRUE;
-        _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
+        CGRect frame = CGRectMake(self.window.frame.origin.x/2, self.window.frame.origin.y/2, self.window.frame.size.height*3, self.window.frame.size.width*3);
+        _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:frame];
         _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
         [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
     }
@@ -345,6 +316,8 @@ BOOL onGoingAuthentication = FALSE;
         NSMutableArray *newViewControllerArray = [NSMutableArray array];
         if ([navController.viewControllers[0] isKindOfClass:[SHCLoginViewController class]]) {
             SHCLoginViewController *loginViewController = navController.viewControllers[0];
+            loginViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            
             [newViewControllerArray addObject:loginViewController];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [navController setViewControllers:newViewControllerArray animated:YES];
@@ -466,11 +439,5 @@ BOOL onGoingAuthentication = FALSE;
 }
 #pragma mark - Private methods
 
-- (void)setupGoogleAnalytics {
-    [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
-    self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
-    [self.googleAnalyticsTracker set:kGAIAnonymizeIp value:[@YES stringValue]];
-    [GAI sharedInstance].dispatchInterval = 40.0;
-}
 
 @end

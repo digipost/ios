@@ -47,8 +47,6 @@
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
 NSString *const kDocumentsViewControllerIdentifier = @"documentsViewControllerIdentifier";
-// Google Analytics screen name
-NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 NSString *const kRefreshDocumentsContentNotificationName = @"refreshDocumentsContentNotificationName";
 
@@ -95,7 +93,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     
     self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
                                                                  inFolderWithName:self.folderName];
-    self.screenName = kDocumentsViewControllerScreenName;
     
     [super viewDidLoad];
     [self addAccountsAnFoldersVCToDoucmentHierarchy];

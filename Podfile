@@ -17,7 +17,6 @@ def all_pods
     pod 'SingleLineKeyboardResize', :git => 'https://github.com/haaakon/SingleLineKeyboardResize', :commit => '0f4e598d44922b2f291797edd4beff0f8a1ce99e'
     pod 'Cartography', '~> 3.0.0'
     pod '1PasswordExtension', '~> 1.8.4'
-    pod 'GoogleAnalytics', '~> 3.17'
 end
 
 target 'Digipost' do

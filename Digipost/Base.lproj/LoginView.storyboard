@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rHW-dX-UBw">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rHW-dX-UBw">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,9 +11,9 @@
         <!--Logg inn-->
         <scene sceneID="F5q-5S-QBK">
             <objects>
-                <viewController storyboardIdentifier="LoginView" id="719-QL-fzL" customClass="SHCLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" modalPresentationStyle="fullScreen" id="719-QL-fzL" customClass="SHCLoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uMe-je-fu7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1s-wv-ZFL" userLabel="header_container">
@@ -212,7 +210,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66P-XU-0DP" userLabel="bottomgrey">
-                                <rect key="frame" x="0.0" y="475" width="376" height="162"/>
+                                <rect key="frame" x="0.0" y="475" width="376" height="182"/>
                                 <color key="backgroundColor" white="0.85565603599999995" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLY-u3-LrI">
@@ -293,7 +291,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="singleUseWebViewController" storyboardName="Main_iPhone" referencedIdentifier="RegistrationView" id="LzJ-4M-HI8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="InU-yb-ZPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2586" y="-758"/>
+            <point key="canvasLocation" x="2586" y="-631"/>
         </scene>
         <!--OAuthNavController-->
         <scene sceneID="cmi-hJ-38c">
@@ -327,14 +325,14 @@
             </objects>
             <point key="canvasLocation" x="1146" y="-156"/>
         </scene>
-        <!--No Rotation Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="Yig-ns-hVe">
             <objects>
-                <navigationController storyboardIdentifier="LoginViewNavController" automaticallyAdjustsScrollViewInsets="NO" id="rHW-dX-UBw" customClass="POSNoRotationNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginViewNavController" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="rHW-dX-UBw" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="rp3-B7-Sdm">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

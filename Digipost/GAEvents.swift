@@ -15,19 +15,12 @@
 //
 
 import Foundation
-import Google.Analytics
 
 @objc class GAEvents: NSObject{
     
-    class func tracker() -> GAITracker {
-        return GAI.sharedInstance().defaultTracker
-    }
+    // tracker() -> GAITracker - Removed after Google Analytics Sunset
     
     @objc class func event(category: String, action: String, label:String, value: NSNumber?) {
-        #if !DEBUG
-            if let event = GAIDictionaryBuilder.createEvent(withCategory: category, action: action, label: label, value: value).build() as? [AnyHashable : Any] {
-            tracker().send(event)
-        }
-        #endif
+        //Removed after Google Analytics Sunset
     }
 }

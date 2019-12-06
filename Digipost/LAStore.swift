@@ -49,7 +49,7 @@ import LUKeychainAccess
         UserDefaults.standard.synchronize()
     }
     
-    static func saveSuccessfullAuthentication(){
+    @objc static func saveSuccessfullAuthentication(){
         LAStore.saveAuthenticationState(authenticated: true)
         LAStore.saveAuthenticationTimeout(timestamp: Date().timeIntervalSince1970)
     }

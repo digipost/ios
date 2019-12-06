@@ -22,15 +22,11 @@
 #import "NSURLRequest+QueryParameters.h"
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
-#import "GAIDictionaryBuilder.h"
 #import "oauth.h"
 #import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
-
-// Google Analytics screen name
-NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
 NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
@@ -57,7 +53,6 @@ Boolean tryToFillUsing1Password = false;
     [super viewDidLoad];
     
     [self clearCacheAndCookies];
-    self.screenName = kOAuthViewControllerScreenName;
     
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
     
@@ -129,8 +124,7 @@ Boolean tryToFillUsing1Password = false;
                                                               // The OAuth manager has successfully authenticated with code - which means we've
                                                               // got an access code and a refresh code, and can dismiss this view controller
                                                               // and let the login view controller take over and push the folders view controller.
-                                                              [LAStore saveAuthenticationStateWithAuthenticated:TRUE];
-                                                              [LAStore saveAuthenticationTimeoutWithTimestamp:[[NSDate date] timeIntervalSince1970]];
+                                                            [LAStore saveSuccessfullAuthentication];
                                                               [self dismissViewControllerAnimated:YES
                                                                                        completion:^{
                                                                                            if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {

@@ -39,9 +39,6 @@ NSString *const kForgotPasswordWebViewIdentifier = @"forgotPasswordWebView";
 // Notification names
 NSString *const kShowLoginViewControllerNotificationName = @"ShowLoginViewControllerNotification";
 
-// Google Analytics screen name
-NSString *const kLoginViewControllerScreenName = @"Login";
-
 @interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -68,7 +65,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     self.loginButton.accessibilityLabel = @"Logg inn med fødselsnummer og passord";
     self.loginIdPortenButton.accessibilityLabel = @"Logg inn med elektronisk ID via ID-porten";
     
-    self.screenName = kLoginViewControllerScreenName;
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if([OAuthToken isUserLoggedIn]){

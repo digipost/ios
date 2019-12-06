@@ -16,7 +16,6 @@
 		316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
-		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		835C74E518867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */; };
 		8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */; };
@@ -146,7 +145,6 @@
 		EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
 		EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
-		EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
 		EC5EBC991B564EBD00FCAB7D /* UISegmentedControl+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5EBC981B564EBD00FCAB7D /* UISegmentedControl+Styling.swift */; };
 		EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
@@ -226,6 +224,8 @@
 		F81D61FF22EF106700827289 /* Code39.m in Sources */ = {isa = PBXBuildFile; fileRef = F81D61FC22EF106700827289 /* Code39.m */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
+		F836A87D2372E6D100FE292F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F836A8672372E6D000FE292F /* Model.xcdatamodeld */; };
+		F836A87E2372E6D100FE292F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F836A8672372E6D000FE292F /* Model.xcdatamodeld */; };
 		F8416EA722A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F8416EA822A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F8416EA922A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
@@ -326,7 +326,6 @@
 		F8AE1C7E1CD374B40009B2F9 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		F8AE1C7F1CD374B40009B2F9 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
 		F8AE1C801CD374B40009B2F9 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
-		F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */; };
 		F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
 		F8AE1C851CD374B40009B2F9 /* SHCBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */; };
@@ -336,7 +335,6 @@
 		F8AE1C8B1CD374B40009B2F9 /* POSFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* POSFoldersViewController.m */; };
 		F8AE1C8C1CD374B40009B2F9 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
 		F8AE1C8E1CD374B40009B2F9 /* UISegmentedControl+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5EBC981B564EBD00FCAB7D /* UISegmentedControl+Styling.swift */; };
-		F8AE1C8F1CD374B40009B2F9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		F8AE1C911CD374B40009B2F9 /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		F8AE1C921CD374B40009B2F9 /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
 		F8AE1C951CD374B40009B2F9 /* UIFont+DigipostFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */; };
@@ -428,19 +426,14 @@
 		2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digipost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAccountTableViewCell.swift; sourceTree = "<group>"; };
 		3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAccountTableViewCell.xib; sourceTree = "<group>"; };
-		316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.10.xcdatamodel"; sourceTree = "<group>"; };
 		316D3BBC1A67F501004E3291 /* POSMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSMailbox.h; sourceTree = "<group>"; };
 		316D3BBD1A67F501004E3291 /* POSMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSMailbox.m; sourceTree = "<group>"; };
 		3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		37711AED2EE6C14715F954C2 /* Pods_DigipostModelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostModelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AFBA9DF77D5F9F783CE3A2F /* Pods-DigipostQA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostQA.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA.release.xcconfig"; sourceTree = "<group>"; };
-		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
-		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
 		835C74E318867603006C6F4F /* POSInvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSInvoice.h; sourceTree = "<group>"; };
 		835C74E418867603006C6F4F /* POSInvoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSInvoice.m; sourceTree = "<group>"; };
-		835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.1.xcdatamodel"; sourceTree = "<group>"; };
-		835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.2.xcdatamodel"; sourceTree = "<group>"; };
 		8364D712185F1EB4008DE6CB /* POSDocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSDocumentsViewController.h; sourceTree = "<group>"; };
 		8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSDocumentsViewController.m; sourceTree = "<group>"; };
 		8364D717185F2286008DE6CB /* SHCBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCBaseTableViewController.h; sourceTree = "<group>"; };
@@ -469,8 +462,6 @@
 		83C22B73187C3B7500A6B6F4 /* UIViewController+NeedsReload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NeedsReload.h"; sourceTree = "<group>"; };
 		83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NeedsReload.m"; sourceTree = "<group>"; };
 		83C5719818984111000C61E7 /* Images-Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Shared.xcassets"; sourceTree = "<group>"; };
-		83C5719C189856A2000C61E7 /* Model v1.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.6.xcdatamodel"; sourceTree = "<group>"; };
-		83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.4.xcdatamodel"; sourceTree = "<group>"; };
 		83D2F7E61875578A00344644 /* POSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFileManager.h; sourceTree = "<group>"; };
 		83D2F7E71875578A00344644 /* POSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFileManager.m; sourceTree = "<group>"; };
 		83D2F7EB18755AAA00344644 /* NSString+SHA1String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA1String.h"; sourceTree = "<group>"; };
@@ -495,7 +486,6 @@
 		83D75F6C1858E9C20013F8C9 /* POSModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSModelManager.m; sourceTree = "<group>"; };
 		83D75F731859B7250013F8C9 /* POSFolderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderTableViewCell.h; sourceTree = "<group>"; };
 		83D75F741859B7250013F8C9 /* POSFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderTableViewCell.m; sourceTree = "<group>"; };
-		83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.3.xcdatamodel"; sourceTree = "<group>"; };
 		83DB4AF3188D963400515022 /* POSBaseEncryptedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSBaseEncryptedModel.h; sourceTree = "<group>"; };
 		83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSBaseEncryptedModel.m; sourceTree = "<group>"; };
 		83F703571855DD3A003DABE1 /* Digipost.release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Digipost.release.xcconfig; sourceTree = "<group>"; };
@@ -545,7 +535,6 @@
 		9CDE3AAF1E7837C200B9C27B /* ActiveType1BankAgreements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActiveType1BankAgreements.json; sourceTree = "<group>"; };
 		9CDE3AB11E7837CD00B9C27B /* ActiveType2BankAgreements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActiveType2BankAgreements.json; sourceTree = "<group>"; };
 		9CDF873F1E68180F003E73FB /* AppVersionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManagerTests.swift; sourceTree = "<group>"; };
-		9CE6A7601F8D0E8B00334F64 /* Model v1.15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.15.xcdatamodel"; sourceTree = "<group>"; };
 		9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManager.swift; sourceTree = "<group>"; };
 		9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreement.swift; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -556,7 +545,6 @@
 		CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostQA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D52A99F2CAFE92F503F8B7FD /* Pods-Digipost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digipost.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digipost/Pods-Digipost.release.xcconfig"; sourceTree = "<group>"; };
 		E77CF1CAB354276A02D57F34 /* Pods-DigipostQA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostQA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA.debug.xcconfig"; sourceTree = "<group>"; };
-		EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
 		EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNewFolderViewController.h; sourceTree = "<group>"; };
@@ -573,7 +561,6 @@
 		EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+DigipostFonts.swift"; sourceTree = "<group>"; };
 		EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SHCAppDelegate+Appearance.swift"; sourceTree = "<group>"; };
 		EC14B93419D1ADAB00570923 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../LaunchScreen.xib; sourceTree = "<group>"; };
-		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
 		EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CommonPredicates.m"; sourceTree = "<group>"; };
 		EC181DB3192CC47B0054C0E8 /* POSFolder+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSFolder+Methods.h"; sourceTree = "<group>"; };
@@ -623,8 +610,6 @@
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonreg-webfont.ttf"; sourceTree = "<group>"; };
 		EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
-		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
-		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
 		EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncreaseSecurityLevelViewController.swift; sourceTree = "<group>"; };
 		EC5EBC981B564EBD00FCAB7D /* UISegmentedControl+Styling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Styling.swift"; sourceTree = "<group>"; };
 		EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Localization.swift"; sourceTree = "<group>"; };
@@ -645,7 +630,6 @@
 		EC76A6BB19BF2D3500D80B01 /* POSUploadTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadTableViewDataSource.h; sourceTree = "<group>"; };
 		EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadTableViewDataSource.m; sourceTree = "<group>"; };
 		EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthTests.swift; path = "../Digipost-Test-Dpost Tests/OAuthTests.swift"; sourceTree = "<group>"; };
-		EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
 		EC7F9DBD1AB701080060E8BF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
@@ -675,7 +659,6 @@
 		ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Convenience.m"; sourceTree = "<group>"; };
 		ECB4C65C19B75C9C00C1C748 /* AHKActionSheet+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AHKActionSheet+Convenience.h"; sourceTree = "<group>"; };
 		ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AHKActionSheet+Convenience.m"; sourceTree = "<group>"; };
-		ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.11.xcdatamodel"; sourceTree = "<group>"; };
 		ECBF75A61AA85ACF00540BCA /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		ECBF75AC1AA85E6900540BCA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -691,10 +674,8 @@
 		ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Actions.swift"; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
 		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
-		ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.13.xcdatamodel"; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
 		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
-		ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.8.xcdatamodel"; sourceTree = "<group>"; };
 		ECF06D59192393A5003BD200 /* NSFetchedResultsController+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+Additions.h"; sourceTree = "<group>"; };
 		ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+Additions.m"; sourceTree = "<group>"; };
 		ECF06D5E19239537003BD200 /* UIViewController+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Additions.h"; sourceTree = "<group>"; };
@@ -711,7 +692,6 @@
 		F80B63561CD37CB900AE9DE5 /* DigipostQA.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostQA.xcconfig; sourceTree = "<group>"; };
 		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F80F712F217729EC000D4685 /* ContactView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactView.storyboard; sourceTree = "<group>"; };
-		F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2. 1.xcdatamodel"; sourceTree = "<group>"; };
 		F81D61C122E8490C00827289 /* POSEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSEvent.swift; sourceTree = "<group>"; };
 		F81D61C522E84A7F00827289 /* POSTimeframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSTimeframe.swift; sourceTree = "<group>"; };
 		F81D61E022E9A2DA00827289 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EventView.xib; sourceTree = "<group>"; };
@@ -726,14 +706,33 @@
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F836169C1DCB6F8A004DAD57 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Invoice.strings; sourceTree = "<group>"; };
+		F836A8682372E6D000FE292F /* Model v2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.3.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8692372E6D100FE292F /* Model v1.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.6.xcdatamodel"; sourceTree = "<group>"; };
+		F836A86A2372E6D100FE292F /* Model v1.11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.11.xcdatamodel"; sourceTree = "<group>"; };
+		F836A86B2372E6D100FE292F /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
+		F836A86C2372E6D100FE292F /* Model v1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.3.xcdatamodel"; sourceTree = "<group>"; };
+		F836A86D2372E6D100FE292F /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
+		F836A86E2372E6D100FE292F /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
+		F836A86F2372E6D100FE292F /* Model v1.12.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.12.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8702372E6D100FE292F /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8712372E6D100FE292F /* Model v2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.0.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8722372E6D100FE292F /* Model v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.2.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8732372E6D100FE292F /* Model v1.15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.15.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8742372E6D100FE292F /* Model v1.10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.10.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8752372E6D100FE292F /* Model v2.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.2.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8762372E6D100FE292F /* Model v1.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.4.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8772372E6D100FE292F /* Model v1.13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.13.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8782372E6D100FE292F /* Model v1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.8.xcdatamodel"; sourceTree = "<group>"; };
+		F836A8792372E6D100FE292F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F836A87A2372E6D100FE292F /* Model v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.1.xcdatamodel"; sourceTree = "<group>"; };
+		F836A87B2372E6D100FE292F /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
+		F836A87C2372E6D100FE292F /* Model v2. 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2. 1.xcdatamodel"; sourceTree = "<group>"; };
 		F8416EA622A7B69D00C92B03 /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		F84270F31C74634B00F71553 /* NSString+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Date.swift"; sourceTree = "<group>"; };
 		F85148371C89B21E0040A734 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		F875D5691CD0E8560085521F /* GCMToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMToken.swift; sourceTree = "<group>"; };
 		F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+GCM.swift"; sourceTree = "<group>"; };
-		F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.3.xcdatamodel"; sourceTree = "<group>"; };
 		F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F8953806208F51680023F7FE /* Model v2.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.2.xcdatamodel"; sourceTree = "<group>"; };
 		F895AAF9226F2EBE00045834 /* LAStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LAStore.swift; sourceTree = "<group>"; };
 		F8A5593A21903DD300667F27 /* SettingsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValidator.swift; sourceTree = "<group>"; };
 		F8A5593E21904C2900667F27 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
@@ -745,7 +744,6 @@
 		F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceBankTableViewCell.xib; sourceTree = "<group>"; };
 		F8BA4FFB218B245E0045B8BE /* APIClient+MailboxSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+MailboxSettings.swift"; sourceTree = "<group>"; };
 		F8BA967F1CC4D06B00DED1BE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		F8BCF92E207F541600D212A9 /* Model v2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.0.xcdatamodel"; sourceTree = "<group>"; };
 		F8BCF935207F872100D212A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UnlockHighAuthenticationLevelView.xib; sourceTree = "<group>"; };
 		F8BCF937207F874A00D212A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UnlockHighAuthenticationLevelView.strings; sourceTree = "<group>"; };
 		F8BCF939207F874C00D212A9 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/UnlockHighAuthenticationLevelView.strings; sourceTree = "<group>"; };
@@ -953,8 +951,8 @@
 				83BAB9241855C0AC004A7BFB /* InfoPlist.strings */,
 				83F7038418573C3A003DABE1 /* Localizable.strings */,
 				83BAB9271855C0AC004A7BFB /* main.m */,
-				8342EFBE1858CE180080A833 /* Model.xcdatamodeld */,
 				F8BA967F1CC4D06B00DED1BE /* Macros.h */,
+				F836A8672372E6D000FE292F /* Model.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -997,8 +995,6 @@
 				EC2484161B206F2B00FC372C /* UIImageView+Color.swift */,
 				EC93622719393515006E85FA /* NSNumber+JsonParsing.h */,
 				EC93622819393515006E85FA /* NSNumber+JsonParsing.m */,
-				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
-				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
 				ECB4C65719B725ED00C1C748 /* NSString+Convenience.h */,
 				ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */,
 				EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */,
@@ -1781,6 +1777,7 @@
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
+				F836A87D2372E6D100FE292F /* Model.xcdatamodeld in Sources */,
 				9C5AB27A1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */,
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
@@ -1839,7 +1836,6 @@
 				83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */,
 				ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */,
-				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				9C962A0F1EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				F81D61C222E8490C00827289 /* POSEvent.swift in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
@@ -1857,7 +1853,6 @@
 				9C25CBE31F0D1E48005F3645 /* AppointmentView.swift in Sources */,
 				ECA5A5F91B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				EC5EBC991B564EBD00FCAB7D /* UISegmentedControl+Styling.swift in Sources */,
-				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
 				EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
@@ -1966,6 +1961,7 @@
 				0B1520D21DA38E51000027C1 /* Dictionary.swift in Sources */,
 				F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */,
+				F836A87E2372E6D100FE292F /* Model.xcdatamodeld in Sources */,
 				F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */,
 				F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */,
 				9CA38B011F3C404100AABD91 /* POSExternalLink.swift in Sources */,
@@ -2024,7 +2020,6 @@
 				F8AE1C7F1CD374B40009B2F9 /* APIResponse.swift in Sources */,
 				9C962A111EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				F8AE1C801CD374B40009B2F9 /* POSMailbox.m in Sources */,
-				F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */,
 				F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */,
 				F81D61C422E8490C00827289 /* POSEvent.swift in Sources */,
 				F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */,
@@ -2041,7 +2036,6 @@
 				9C25CBE41F0D1E48005F3645 /* AppointmentView.swift in Sources */,
 				9C9CB8F61E9CFDE100F2C0B9 /* POSInvoice.m in Sources */,
 				F8AE1C8E1CD374B40009B2F9 /* UISegmentedControl+Styling.swift in Sources */,
-				F8AE1C8F1CD374B40009B2F9 /* Model.xcdatamodeld in Sources */,
 				F8AE1C911CD374B40009B2F9 /* POSLetterViewController+Additions.swift in Sources */,
 				F8AE1C921CD374B40009B2F9 /* POSNewFolderViewController.m in Sources */,
 				F8AE1C951CD374B40009B2F9 /* UIFont+DigipostFonts.swift in Sources */,
@@ -2286,7 +2280,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 243;
+				CURRENT_PROJECT_VERSION = 249;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2316,7 +2310,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.4;
+				MARKETING_VERSION = 3.3.6;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2345,7 +2339,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 243;
+				CURRENT_PROJECT_VERSION = 249;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2375,7 +2369,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.4;
+				MARKETING_VERSION = 3.3.6;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2488,7 +2482,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 243;
+				CURRENT_PROJECT_VERSION = 249;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2520,7 +2514,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.4;
+				MARKETING_VERSION = 3.3.6;
 				MODULE_NAME = DigipostQA;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.qa;
@@ -2550,7 +2544,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 243;
+				CURRENT_PROJECT_VERSION = 249;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2582,7 +2576,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.4;
+				MARKETING_VERSION = 3.3.6;
 				MODULE_NAME = DigipostQA;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.qa;
@@ -2640,30 +2634,32 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
+		F836A8672372E6D000FE292F /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */,
-				F8953806208F51680023F7FE /* Model v2.2.xcdatamodel */,
-				F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */,
-				F8BCF92E207F541600D212A9 /* Model v2.0.xcdatamodel */,
-				9CE6A7601F8D0E8B00334F64 /* Model v1.15.xcdatamodel */,
-				EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */,
-				316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */,
-				ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */,
-				ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */,
-				ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */,
-				EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */,
-				EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */,
-				83C5719C189856A2000C61E7 /* Model v1.6.xcdatamodel */,
-				833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */,
-				83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */,
-				83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */,
-				835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */,
-				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
-				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
+				F836A8682372E6D000FE292F /* Model v2.3.xcdatamodel */,
+				F836A8692372E6D100FE292F /* Model v1.6.xcdatamodel */,
+				F836A86A2372E6D100FE292F /* Model v1.11.xcdatamodel */,
+				F836A86B2372E6D100FE292F /* Model v1.14.xcdatamodel */,
+				F836A86C2372E6D100FE292F /* Model v1.3.xcdatamodel */,
+				F836A86D2372E6D100FE292F /* Model v1.0.xcdatamodel */,
+				F836A86E2372E6D100FE292F /* Model v1.9.xcdatamodel */,
+				F836A86F2372E6D100FE292F /* Model v1.12.xcdatamodel */,
+				F836A8702372E6D100FE292F /* Model v1.5.xcdatamodel */,
+				F836A8712372E6D100FE292F /* Model v2.0.xcdatamodel */,
+				F836A8722372E6D100FE292F /* Model v1.2.xcdatamodel */,
+				F836A8732372E6D100FE292F /* Model v1.15.xcdatamodel */,
+				F836A8742372E6D100FE292F /* Model v1.10.xcdatamodel */,
+				F836A8752372E6D100FE292F /* Model v2.2.xcdatamodel */,
+				F836A8762372E6D100FE292F /* Model v1.4.xcdatamodel */,
+				F836A8772372E6D100FE292F /* Model v1.13.xcdatamodel */,
+				F836A8782372E6D100FE292F /* Model v1.8.xcdatamodel */,
+				F836A8792372E6D100FE292F /* Model.xcdatamodel */,
+				F836A87A2372E6D100FE292F /* Model v1.1.xcdatamodel */,
+				F836A87B2372E6D100FE292F /* Model v1. 7.xcdatamodel */,
+				F836A87C2372E6D100FE292F /* Model v2. 1.xcdatamodel */,
 			);
-			currentVersion = F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */;
+			currentVersion = F836A8682372E6D000FE292F /* Model v2.3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
