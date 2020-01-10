@@ -2280,7 +2280,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 249;
+				CURRENT_PROJECT_VERSION = 250;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2310,7 +2310,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.6;
+				MARKETING_VERSION = 3.3.7;
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2339,7 +2339,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 249;
+				CURRENT_PROJECT_VERSION = 250;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2369,7 +2369,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.6;
+				MARKETING_VERSION = 3.3.7;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2482,7 +2482,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 249;
+				CURRENT_PROJECT_VERSION = 250;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2514,7 +2514,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.6;
+				MARKETING_VERSION = 3.3.7;
 				MODULE_NAME = DigipostQA;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.qa;
@@ -2544,7 +2544,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 249;
+				CURRENT_PROJECT_VERSION = 250;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2576,7 +2576,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 3.3.6;
+				MARKETING_VERSION = 3.3.7;
 				MODULE_NAME = DigipostQA;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.qa;
