@@ -2280,7 +2280,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 251;
+				CURRENT_PROJECT_VERSION = 252;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2339,7 +2339,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 251;
+				CURRENT_PROJECT_VERSION = 252;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2482,7 +2482,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 251;
+				CURRENT_PROJECT_VERSION = 252;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2544,7 +2544,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 251;
+				CURRENT_PROJECT_VERSION = 252;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
