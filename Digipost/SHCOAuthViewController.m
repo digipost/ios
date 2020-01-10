@@ -59,7 +59,7 @@ Boolean tryToFillUsing1Password = false;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
     [self remove1PasswordButtonIfNotNormalLoginScope];
     [self setupBackButton];
     [self presentAuthenticationWebView];
@@ -79,6 +79,11 @@ Boolean tryToFillUsing1Password = false;
     }else{
         self.stateParameter = nil;
     }
+}
+
+-(void)willResignActive
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)setupBackButton
