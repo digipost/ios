@@ -101,9 +101,9 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
                 
                 [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken
                                                    success:^{
-                                                       [weakSelf storeGCMToken: registrationToken];
-                                                   } failure:^(APIError *error){
-                                                   }
+                    [weakSelf storeGCMToken: registrationToken];
+                } failure:^(APIError *error){
+                }
                  ];
                 
                 NSDictionary *userInfo = @{@"registrationToken":registrationToken};
@@ -195,17 +195,17 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
-                                                              showingLogoutModal = FALSE;
-                                                              onGoingAuthentication = FALSE;
-                                                              [self userCanceledLocalAuthentication];
-                                                          }]];
+            showingLogoutModal = FALSE;
+            onGoingAuthentication = FALSE;
+            [self userCanceledLocalAuthentication];
+        }]];
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", comment: @"Cancel")
                                                             style:UIAlertActionStyleCancel
                                                           handler:^(UIAlertAction *action) {
-                                                              showingLogoutModal = FALSE;
-                                                              onGoingAuthentication = FALSE;
-                                                              [self checkLocalAuthentication];
-                                                          }]];
+            showingLogoutModal = FALSE;
+            onGoingAuthentication = FALSE;
+            [self checkLocalAuthentication];
+        }]];
         [(id)self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
     });
 }
@@ -231,7 +231,7 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
 }
 
 -(void) checkLocalAuthentication {
-    if([OAuthToken isUserLoggedIn] && [self isLocalAuthenticationOutdated] && (!waitingForAuthenticationCallback || !onGoingAuthentication) && !showingLogoutModal ){
+    if([OAuthToken isUserLoggedIn] && [self isLocalAuthenticationOutdated] && !waitingForAuthenticationCallback && !showingLogoutModal){
         [self addAuthOverlayView];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
@@ -261,29 +261,35 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
 
 -(void)showSetupLocalAuthenticationModal {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SETUP_LOCALAUTH_PIN_HEADER", comment: "PIN/TouchID/FaceID er påkrevd for å bruke appen. Vennligst skru på dette i innstillinger") message:@"" preferredStyle:UIAlertControllerStyleAlert];
-
+    
     [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"SETUP_LOCALAUTH_SETTINGS_LINK", comment: @"Åpne innstillinger")
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
-                                                          [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                                          onGoingAuthentication = FALSE;
-                                                      }]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        onGoingAuthentication = FALSE;
+    }]];
     [(id)self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
+-(BOOL) overlayExistsInViewStack {
+    return [(id)self.window.rootViewController.view viewWithTag:authenticationOverLayTag] != NULL;
+}
+
 -(void) addAuthOverlayView {
-    if(![self.window.rootViewController.view viewWithTag:authenticationOverLayTag] && [OAuthToken isUserLoggedIn]){
+    if(![self overlayExistsInViewStack] && [OAuthToken isUserLoggedIn]){
         CGRect frame = CGRectMake(self.window.frame.origin.x/2, self.window.frame.origin.y/2, self.window.frame.size.height*3, self.window.frame.size.width*3);
         _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:frame];
         _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
         _localAuthenticationOverlayView.tag = authenticationOverLayTag;
-        [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
+        [(id)self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
     }
 }
 
 -(void) removeAuthOverlayView {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.localAuthenticationOverlayView removeFromSuperview];
+        if([self overlayExistsInViewStack]){
+            [self.localAuthenticationOverlayView removeFromSuperview];
+        }
     });
 }
 
@@ -444,7 +450,7 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
         [rootNavController.topViewController presentViewController:uploadNavigationController
                                                           animated:YES
                                                         completion:^{
-                                                        }];
+        }];
     } else {
         UISplitViewController *splitViewController = (id)rootNavController;
         UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
