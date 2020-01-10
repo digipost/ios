@@ -39,7 +39,6 @@
 @property(nonatomic, strong) NSDate* notificationReceived;
 @property(nonatomic, strong) UIView *localAuthenticationOverlayView;
 
-
 @end
 
 @implementation SHCAppDelegate
@@ -47,8 +46,9 @@ NSInteger authenticationOverLayTag = 1337;
 BOOL showingLogoutModal = FALSE;
 BOOL onGoingAuthentication = FALSE;
 BOOL waitingForAuthenticationCallback = FALSE;
-
+BOOL ongoingOAuthAuthentication = FALSE;
 NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
+
 
 #pragma mark - UIApplicationDelegate
 
@@ -119,6 +119,10 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
         };
     }
     
+}
+
+- (void) setOngoingOAuthAuthentication: (BOOL) enabled {
+    ongoingOAuthAuthentication = enabled;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -231,7 +235,7 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
 }
 
 -(void) checkLocalAuthentication {
-    if([OAuthToken isUserLoggedIn] && [self isLocalAuthenticationOutdated] && !waitingForAuthenticationCallback && !showingLogoutModal){
+    if(!ongoingOAuthAuthentication && [OAuthToken isUserLoggedIn] && [self isLocalAuthenticationOutdated] && !waitingForAuthenticationCallback && !showingLogoutModal){
         [self addAuthOverlayView];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
@@ -411,14 +415,6 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
                                  animated:NO];
     }
 }
-
-- (void)applicationWillResignActive:(UIApplication *)application {
-}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-}
-
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];

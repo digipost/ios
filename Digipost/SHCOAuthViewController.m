@@ -23,6 +23,7 @@
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
 #import "oauth.h"
+#import "SHCAppDelegate.h"
 #import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -59,15 +60,12 @@ Boolean tryToFillUsing1Password = false;
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
     [self remove1PasswordButtonIfNotNormalLoginScope];
     [self setupBackButton];
     [self presentAuthenticationWebView];
+    [self toggleOngoingOAuthAuthentication: true];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -81,14 +79,20 @@ Boolean tryToFillUsing1Password = false;
     }
 }
 
--(void)willResignActive
+-(void)toggleOngoingOAuthAuthentication: (BOOL)enabled {
+    SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
+    [appDelegate setOngoingOAuthAuthentication: enabled];
+}
+
+-(void)dismissView:(id)sender
 {
+    [self toggleOngoingOAuthAuthentication: false];
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)setupBackButton
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(dismissView:)];
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.8] } forState:UIControlStateNormal];
 }
 
@@ -105,7 +109,6 @@ Boolean tryToFillUsing1Password = false;
     // Trap requests to the URL used when OAuth authentication dialog finishes
     if ([request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
         NSDictionary *parameters = [request queryParameters];
-        
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
             // Copy and reset the state parameter, as we're done checking its value for now
@@ -132,6 +135,7 @@ Boolean tryToFillUsing1Password = false;
                                                             [LAStore saveSuccessfullAuthentication];
                                                               [self dismissViewControllerAnimated:YES
                                                                                        completion:^{
+                                                                                            [self toggleOngoingOAuthAuthentication: false];
                                                                                            if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
                                                                                                [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
                                                                                            }
@@ -190,6 +194,7 @@ Boolean tryToFillUsing1Password = false;
     [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Oauth login error button title", @"Lets user tap it to dismiss alert")
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
+                                                            [self toggleOngoingOAuthAuthentication: false];
                                                           [self dismissViewControllerAnimated:YES completion:nil];
                                                       }]];
     
@@ -241,10 +246,6 @@ Boolean tryToFillUsing1Password = false;
 
 #pragma mark - Private methods
 
-- (void)didTapCloseBarButtonItem:(id)sender
-{
-    [self dismissViewControllerAnimated:YES completion:^{}];
-}
 
 - (void)presentAuthenticationWebView
 {
