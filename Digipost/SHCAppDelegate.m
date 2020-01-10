@@ -48,6 +48,8 @@ BOOL showingLogoutModal = FALSE;
 BOOL appIsActive = FALSE;
 BOOL onGoingAuthentication = FALSE;
 
+NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
+
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -156,8 +158,7 @@ BOOL onGoingAuthentication = FALSE;
     [GAEvents eventWithCategory:category action:action label:label value:nil];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    [self GAEventLaunchType];
+-(void)connectToGCM {
     [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
         if (error) {
             NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
@@ -165,16 +166,21 @@ BOOL onGoingAuthentication = FALSE;
             self->_connectedToGCM = true;
         }
     }];
-    
+}
+
+-(void)toggleLocalAuthentication {
     if(![LAStore devicePasscodeMinimumSet]){
         [self showSetupLocalAuthenticationModal];
-    }else if(!appIsActive && [OAuthToken isUserLoggedIn] && !onGoingAuthentication){
-        [self checkLocalAuthentication];
-    }else if ([OAuthToken isUserLoggedIn] && !showingLogoutModal) {
-        [self checkLocalAuthentication];
-    }else if(![OAuthToken isUserLoggedIn]) {
-        [self removeAuthOverlayView];
+        return;
     }
+    
+    [self checkLocalAuthentication];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [self GAEventLaunchType];
+    [self connectToGCM];
+    [self toggleLocalAuthentication];
 }
 
 -(void)userCanceledLocalAuthentication {
@@ -206,27 +212,38 @@ BOOL onGoingAuthentication = FALSE;
     });
 }
 
--(void) setLocalReAuthenticationTimer {
-    [self addAuthOverlayView];
-    [LAStore saveAuthenticationTimeoutWithTimestamp: [[NSDate date] timeIntervalSince1970]];
+-(void) deleteLocalAuthenticationState {
+    [LAStore deleteAuthentication];
 }
 
--(void) deleteLocalAuthenticationState {
-    [LAStore deleteAuthenticationAndTimestamp];
+-(void) willResignActive {
+    [self addAuthOverlayView];
+}
+
+-(BOOL)isLocalAuthenticationOutdated {
+    if(lastSuccessfullLocalAuthenticationTimestamp != NULL){
+        NSNumber *now = [NSNumber numberWithDouble: [[NSDate date] timeIntervalSince1970]];
+        return (now.intValue - lastSuccessfullLocalAuthenticationTimestamp.intValue) > 2;
+    }
+    return true;
+}
+
+-(void)setLastSuccessfullLocalAuthenticationTimestamp {
+    lastSuccessfullLocalAuthenticationTimestamp = [NSNumber numberWithDouble: [[NSDate date] timeIntervalSince1970]];
 }
 
 -(void) checkLocalAuthentication {
-    [self addAuthOverlayView];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
-    onGoingAuthentication = TRUE;
-    
-    if(![LAStore isValidAuthenticationAndTimestamp] || ([LAStore isValidAuthenticationAndTimestamp] && !appIsActive)){
+    if([OAuthToken isUserLoggedIn] && [self isLocalAuthenticationOutdated] && !onGoingAuthentication && !showingLogoutModal ){
+        [self addAuthOverlayView];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
+        onGoingAuthentication = TRUE;
+        
         [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* errorText, BOOL userCancel) {
             if(success){
                 appIsActive = TRUE;
                 onGoingAuthentication = FALSE;
+                [self setLastSuccessfullLocalAuthenticationTimestamp];
                 [self removeAuthOverlayView];
             }else{
                 if(userCancel){
@@ -237,9 +254,9 @@ BOOL onGoingAuthentication = FALSE;
             }
         }];
     }else{
-        //Success
-        [self removeAuthOverlayView];
-        onGoingAuthentication = FALSE;
+        if(!onGoingAuthentication) {
+            [self removeAuthOverlayView];
+        }
     }
 }
 
@@ -256,7 +273,7 @@ BOOL onGoingAuthentication = FALSE;
 }
 
 -(void) addAuthOverlayView {
-    if(!addedLocalAuthenticationOverlay){
+    if(!addedLocalAuthenticationOverlay && [OAuthToken isUserLoggedIn]){
         addedLocalAuthenticationOverlay = TRUE;
         CGRect frame = CGRectMake(self.window.frame.origin.x/2, self.window.frame.origin.y/2, self.window.frame.size.height*3, self.window.frame.size.width*3);
         _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:frame];

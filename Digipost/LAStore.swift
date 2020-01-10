@@ -20,10 +20,9 @@ import LUKeychainAccess
 @objc class LAStore: NSObject {
     
     static let LA_STATE = "LocalAuthenticationState"
-    static let LA_TIMESTAMP = "LocalAuthenticationTimestamp"
     
-    @objc static func isValidAuthenticationAndTimestamp() -> Bool {
-        return authenticationIsValid() && timestampIsValid()
+    @objc static func isValidAuthentication() -> Bool {
+        return authenticationIsValid()
     }
     
     @objc static func authenticationIsValid() -> Bool {
@@ -32,38 +31,21 @@ import LUKeychainAccess
         }
         return false
     }
-    
-    @objc static func timestampIsValid() -> Bool {
-        if let timestamp = UserDefaults.standard.object(forKey: LA_TIMESTAMP) as? Double {
-            let diff = Date().timeIntervalSince1970 - timestamp
-            let timeLimitInSeconds = 600 //tenminutes
-            
-            return Int(diff) < timeLimitInSeconds
-        }
-        return false
-    }
-    
-    @objc static func deleteAuthenticationAndTimestamp() {
+
+    @objc static func deleteAuthentication() {
         UserDefaults.standard.removeObject(forKey: LA_STATE)
-        UserDefaults.standard.removeObject(forKey: LA_TIMESTAMP)
         UserDefaults.standard.synchronize()
     }
     
     @objc static func saveSuccessfullAuthentication(){
         LAStore.saveAuthenticationState(authenticated: true)
-        LAStore.saveAuthenticationTimeout(timestamp: Date().timeIntervalSince1970)
     }
     
     @objc static func saveAuthenticationState(authenticated: Bool) {
         UserDefaults.standard.set(authenticated, forKey: LA_STATE)
         UserDefaults.standard.synchronize()
     }
-    
-    @objc static func saveAuthenticationTimeout(timestamp: TimeInterval) {
-        UserDefaults.standard.set(timestamp,forKey: LA_TIMESTAMP)
-        UserDefaults.standard.synchronize()
-    }
-    
+        
     @objc static func devicePasscodeMinimumSet() -> Bool {
         return LAContext().canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
     }
