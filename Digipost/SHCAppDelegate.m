@@ -43,10 +43,10 @@
 @end
 
 @implementation SHCAppDelegate
-BOOL addedLocalAuthenticationOverlay = FALSE;
+NSInteger authenticationOverLayTag = 1337;
 BOOL showingLogoutModal = FALSE;
-BOOL appIsActive = FALSE;
 BOOL onGoingAuthentication = FALSE;
+BOOL waitingForAuthenticationCallback = FALSE;
 
 NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
 
@@ -122,10 +122,8 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    
     GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
     instanceIDConfig.delegate = self;
-    
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
     
 #ifdef STAGING
@@ -233,15 +231,15 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
 }
 
 -(void) checkLocalAuthentication {
-    if([OAuthToken isUserLoggedIn] && [self isLocalAuthenticationOutdated] && !onGoingAuthentication && !showingLogoutModal ){
+    if([OAuthToken isUserLoggedIn] && [self isLocalAuthenticationOutdated] && (!waitingForAuthenticationCallback || !onGoingAuthentication) && !showingLogoutModal ){
         [self addAuthOverlayView];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
         onGoingAuthentication = TRUE;
         
+        waitingForAuthenticationCallback = TRUE;
         [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* errorText, BOOL userCancel) {
             if(success){
-                appIsActive = TRUE;
                 onGoingAuthentication = FALSE;
                 [self setLastSuccessfullLocalAuthenticationTimestamp];
                 [self removeAuthOverlayView];
@@ -252,6 +250,7 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
                     [self showSetupLocalAuthenticationModal];
                 }
             }
+            waitingForAuthenticationCallback = FALSE;
         }];
     }else{
         if(!onGoingAuthentication) {
@@ -273,17 +272,16 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
 }
 
 -(void) addAuthOverlayView {
-    if(!addedLocalAuthenticationOverlay && [OAuthToken isUserLoggedIn]){
-        addedLocalAuthenticationOverlay = TRUE;
+    if(![self.window.rootViewController.view viewWithTag:authenticationOverLayTag] && [OAuthToken isUserLoggedIn]){
         CGRect frame = CGRectMake(self.window.frame.origin.x/2, self.window.frame.origin.y/2, self.window.frame.size.height*3, self.window.frame.size.width*3);
         _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:frame];
         _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
+        _localAuthenticationOverlayView.tag = authenticationOverLayTag;
         [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
     }
 }
 
 -(void) removeAuthOverlayView {
-    addedLocalAuthenticationOverlay = FALSE;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.localAuthenticationOverlayView removeFromSuperview];
     });
