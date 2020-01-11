@@ -186,7 +186,7 @@ NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
 }
 
 -(void)userCanceledLocalAuthentication {
-    [[APIClient sharedClient] logoutThenDeleteAllStoredData];
+    [[APIClient sharedClient] deleteOAuthTokensAndData];
     [self showLoginView];
     [self removeAuthOverlayView];
 }
