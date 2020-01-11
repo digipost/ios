@@ -89,7 +89,7 @@ DEPENDENCIES:
   - "UIAlertView+Blocks (~> 0.8)"
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - 1PasswordExtension
     - AFNetworking
     - Alamofire
@@ -145,4 +145,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: fb8682f28ee2cd4bbbd5566fe68cfc338e15135a
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.8.4
