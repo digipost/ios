@@ -205,13 +205,8 @@ CGFloat extraMetadataConstraintHeight = 0;
 
 -(void)openExternalLink:(NSString*) url {
     NSURL *urlObject = [NSURL URLWithString:url];
-    
-    SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:urlObject];
-    safariVC.delegate = self;
-    
-    UIPopoverPresentationController *popPresenter = [safariVC popoverPresentationController];
-    popPresenter.sourceView = self.view;
-    [self presentViewController:safariVC animated:NO completion:nil];
+    UIApplication *application = [UIApplication sharedApplication];
+    [application openURL:urlObject options:@{} completionHandler:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
