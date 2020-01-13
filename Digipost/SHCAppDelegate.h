@@ -34,5 +34,6 @@
 - (void)initGCM;
 - (void)revokeGCMToken;
 - (void)showLoginView;
+- (void)setOngoingOAuthAuthentication: (BOOL) enabled;
 
 @end

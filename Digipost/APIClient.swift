@@ -179,14 +179,21 @@ import AFNetworking
             task.resume()
         }
     }
+    
+    @objc func deleteOAuthTokensAndData() {
+        OAuthToken.removeToken()
+        POSModelManager.shared().deleteAllObjects()
+        POSFileManager.shared().removeAllFiles()
+    }
 
     @objc func logoutThenDeleteAllStoredData() {
+        
+        self.logout(success: { () -> Void in
+            // get run for every time a sucessful scope logs out
+        }) { (error) -> () in
+            // gets run for every failed request
+        }
         cancelAllRunningTasks { () -> Void in
-            self.logout(success: { () -> Void in
-                // get run for every time a sucessful scope logs out
-                }) { (error) -> () in
-                // gets run for every failed request
-            }
         }
     }
 

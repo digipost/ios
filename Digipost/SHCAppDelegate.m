@@ -39,14 +39,16 @@
 @property(nonatomic, strong) NSDate* notificationReceived;
 @property(nonatomic, strong) UIView *localAuthenticationOverlayView;
 
-
 @end
 
 @implementation SHCAppDelegate
-BOOL addedLocalAuthenticationOverlay = FALSE;
+NSInteger authenticationOverLayTag = 1337;
 BOOL showingLogoutModal = FALSE;
-BOOL appIsActive = FALSE;
 BOOL onGoingAuthentication = FALSE;
+BOOL waitingForAuthenticationCallback = FALSE;
+BOOL ongoingOAuthAuthentication = FALSE;
+NSNumber *lastSuccessfullLocalAuthenticationTimestamp = 0;
+
 
 #pragma mark - UIApplicationDelegate
 
@@ -99,9 +101,9 @@ BOOL onGoingAuthentication = FALSE;
                 
                 [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken
                                                    success:^{
-                                                       [weakSelf storeGCMToken: registrationToken];
-                                                   } failure:^(APIError *error){
-                                                   }
+                    [weakSelf storeGCMToken: registrationToken];
+                } failure:^(APIError *error){
+                }
                  ];
                 
                 NSDictionary *userInfo = @{@"registrationToken":registrationToken};
@@ -119,11 +121,13 @@ BOOL onGoingAuthentication = FALSE;
     
 }
 
+- (void) setOngoingOAuthAuthentication: (BOOL) enabled {
+    ongoingOAuthAuthentication = enabled;
+}
+
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    
     GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
     instanceIDConfig.delegate = self;
-    
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
     
 #ifdef STAGING
@@ -156,8 +160,7 @@ BOOL onGoingAuthentication = FALSE;
     [GAEvents eventWithCategory:category action:action label:label value:nil];
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-    [self GAEventLaunchType];
+-(void)connectToGCM {
     [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
         if (error) {
             NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
@@ -165,20 +168,25 @@ BOOL onGoingAuthentication = FALSE;
             self->_connectedToGCM = true;
         }
     }];
-    
+}
+
+-(void)toggleLocalAuthentication {
     if(![LAStore devicePasscodeMinimumSet]){
         [self showSetupLocalAuthenticationModal];
-    }else if(!appIsActive && [OAuthToken isUserLoggedIn] && !onGoingAuthentication){
-        [self checkLocalAuthentication];
-    }else if ([OAuthToken isUserLoggedIn] && !showingLogoutModal) {
-        [self checkLocalAuthentication];
-    }else if(![OAuthToken isUserLoggedIn]) {
-        [self removeAuthOverlayView];
+        return;
     }
+    
+    [self checkLocalAuthentication];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    [self GAEventLaunchType];
+    [self connectToGCM];
+    [self toggleLocalAuthentication];
 }
 
 -(void)userCanceledLocalAuthentication {
-    [[APIClient sharedClient] logoutThenDeleteAllStoredData];
+    [[APIClient sharedClient] deleteOAuthTokensAndData];
     [self showLoginView];
     [self removeAuthOverlayView];
 }
@@ -191,42 +199,53 @@ BOOL onGoingAuthentication = FALSE;
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
-                                                              showingLogoutModal = FALSE;
-                                                              onGoingAuthentication = FALSE;
-                                                              [self userCanceledLocalAuthentication];
-                                                          }]];
+            showingLogoutModal = FALSE;
+            onGoingAuthentication = FALSE;
+            [self userCanceledLocalAuthentication];
+        }]];
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", comment: @"Cancel")
                                                             style:UIAlertActionStyleCancel
                                                           handler:^(UIAlertAction *action) {
-                                                              showingLogoutModal = FALSE;
-                                                              onGoingAuthentication = FALSE;
-                                                              [self checkLocalAuthentication];
-                                                          }]];
+            showingLogoutModal = FALSE;
+            onGoingAuthentication = FALSE;
+            [self checkLocalAuthentication];
+        }]];
         [(id)self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
     });
 }
 
--(void) setLocalReAuthenticationTimer {
-    [self addAuthOverlayView];
-    [LAStore saveAuthenticationTimeoutWithTimestamp: [[NSDate date] timeIntervalSince1970]];
+-(void) deleteLocalAuthenticationState {
+    [LAStore deleteAuthentication];
 }
 
--(void) deleteLocalAuthenticationState {
-    [LAStore deleteAuthenticationAndTimestamp];
+-(void) willResignActive {
+    [self addAuthOverlayView];
+}
+
+-(BOOL)isLocalAuthenticationOutdated {
+    if(lastSuccessfullLocalAuthenticationTimestamp != NULL){
+        NSNumber *now = [NSNumber numberWithDouble: [[NSDate date] timeIntervalSince1970]];
+        return (now.intValue - lastSuccessfullLocalAuthenticationTimestamp.intValue) > 2;
+    }
+    return true;
+}
+
+-(void)setLastSuccessfullLocalAuthenticationTimestamp {
+    lastSuccessfullLocalAuthenticationTimestamp = [NSNumber numberWithDouble: [[NSDate date] timeIntervalSince1970]];
 }
 
 -(void) checkLocalAuthentication {
-    [self addAuthOverlayView];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
-    onGoingAuthentication = TRUE;
-    
-    if(![LAStore isValidAuthenticationAndTimestamp] || ([LAStore isValidAuthenticationAndTimestamp] && !appIsActive)){
+    if(!ongoingOAuthAuthentication && [OAuthToken isUserLoggedIn] && [self isLocalAuthenticationOutdated] && !waitingForAuthenticationCallback && !showingLogoutModal){
+        [self addAuthOverlayView];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(willResignActive) name:UIApplicationWillResignActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
+        onGoingAuthentication = TRUE;
+        
+        waitingForAuthenticationCallback = TRUE;
         [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* errorText, BOOL userCancel) {
             if(success){
-                appIsActive = TRUE;
                 onGoingAuthentication = FALSE;
+                [self setLastSuccessfullLocalAuthenticationTimestamp];
                 [self removeAuthOverlayView];
             }else{
                 if(userCancel){
@@ -235,40 +254,46 @@ BOOL onGoingAuthentication = FALSE;
                     [self showSetupLocalAuthenticationModal];
                 }
             }
+            waitingForAuthenticationCallback = FALSE;
         }];
     }else{
-        //Success
-        [self removeAuthOverlayView];
-        onGoingAuthentication = FALSE;
+        if(!onGoingAuthentication) {
+            [self removeAuthOverlayView];
+        }
     }
 }
 
 -(void)showSetupLocalAuthenticationModal {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SETUP_LOCALAUTH_PIN_HEADER", comment: "PIN/TouchID/FaceID er påkrevd for å bruke appen. Vennligst skru på dette i innstillinger") message:@"" preferredStyle:UIAlertControllerStyleAlert];
-
+    
     [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"SETUP_LOCALAUTH_SETTINGS_LINK", comment: @"Åpne innstillinger")
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
-                                                          [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-                                                          onGoingAuthentication = FALSE;
-                                                      }]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        onGoingAuthentication = FALSE;
+    }]];
     [(id)self.window.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
+-(BOOL) overlayExistsInViewStack {
+    return [(id)self.window.rootViewController.view viewWithTag:authenticationOverLayTag] != NULL;
+}
+
 -(void) addAuthOverlayView {
-    if(!addedLocalAuthenticationOverlay){
-        addedLocalAuthenticationOverlay = TRUE;
+    if(![self overlayExistsInViewStack] && [OAuthToken isUserLoggedIn]){
         CGRect frame = CGRectMake(self.window.frame.origin.x/2, self.window.frame.origin.y/2, self.window.frame.size.height*3, self.window.frame.size.width*3);
         _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:frame];
         _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
-        [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
+        _localAuthenticationOverlayView.tag = authenticationOverLayTag;
+        [(id)self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
     }
 }
 
 -(void) removeAuthOverlayView {
-    addedLocalAuthenticationOverlay = FALSE;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.localAuthenticationOverlayView removeFromSuperview];
+        if([self overlayExistsInViewStack]){
+            [self.localAuthenticationOverlayView removeFromSuperview];
+        }
     });
 }
 
@@ -391,14 +416,6 @@ BOOL onGoingAuthentication = FALSE;
     }
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-}
-
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-}
-
-
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
 }
@@ -429,7 +446,7 @@ BOOL onGoingAuthentication = FALSE;
         [rootNavController.topViewController presentViewController:uploadNavigationController
                                                           animated:YES
                                                         completion:^{
-                                                        }];
+        }];
     } else {
         UISplitViewController *splitViewController = (id)rootNavController;
         UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
