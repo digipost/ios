@@ -23,7 +23,7 @@ class UploadMenuDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -44,10 +44,7 @@ class UploadMenuDataSource: NSObject, UITableViewDataSource {
         case 1:
             cell.titleLabel.text = NSLocalizedString("upload action sheet camera roll button", comment:"button that uploads from camera roll")
             cell.iconImage.image = UIImage(named: "Upload_small")
-        case 2:
-            cell.titleLabel.text = NSLocalizedString( "upload action sheet other file", comment:"From other app")
-            cell.iconImage.image = UIImage.templateImage("Upload_apps")
-            cell.iconImage.tintColor = UIColor.white
+
         default:
             assert(false)
         }

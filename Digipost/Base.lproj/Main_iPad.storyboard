@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -352,7 +352,7 @@
                         <outlet property="shadowView" destination="xHm-UB-Jqi" id="lSw-3z-9AE"/>
                         <outlet property="stackView" destination="wL3-bf-usk" id="a3X-TD-eZp"/>
                         <outlet property="webView" destination="yW3-Fy-eNQ" id="S0L-0e-pT3"/>
-                        <segue destination="OdY-44-cdI" kind="push" identifier="askForhigherAuthenticationLevelSegue" id="Yw9-YX-822"/>
+                        <segue destination="OdY-44-cdI" kind="modal" identifier="askForhigherAuthenticationLevelSegue" modalPresentationStyle="fullScreen" id="Yw9-YX-822"/>
                         <segue destination="8G3-Ke-Q07" kind="push" identifier="invoiceOptionsSegue" id="rUH-Vz-GEc"/>
                         <segue destination="Rql-hZ-HXF" kind="push" identifier="showExternalLinkWebview" id="Toe-Fs-Rv2"/>
                     </connections>
@@ -524,7 +524,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-list-icon-unpaid" translatesAutoresizingMaskIntoConstraints="NO" id="ZIe-sk-VbV">
-                                            <rect key="frame" x="7" y="67" width="28" height="30"/>
+                                            <rect key="frame" x="7" y="67" width="14" height="15"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJI-uk-1YP" userLabel="Sender Label">
                                             <rect key="frame" x="25" y="47" width="209" height="15.5"/>
@@ -676,10 +676,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2F-in-Zag" userLabel="No Documents View">
-                            <rect key="frame" x="0.0" y="36.5" width="320" height="387.5"/>
+                            <rect key="frame" x="0.0" y="116.5" width="320" height="227.5"/>
                             <subviews>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-4a-CZ8" userLabel="No Documents Label">
-                                    <rect key="frame" x="30" y="347" width="260" height="20.5"/>
+                                    <rect key="frame" x="30" y="187" width="260" height="20.5"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="249" constant="21" id="fNk-yO-pLp"/>
                                     </constraints>
@@ -688,7 +688,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tom_mappe_breven" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-FE-eTx" userLabel="No Documents Image View">
-                                    <rect key="frame" x="28.5" y="8" width="264" height="320"/>
+                                    <rect key="frame" x="94.5" y="8" width="132" height="160"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="101" id="GtI-Pm-p8H"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="117" id="c9U-I3-rvf"/>
@@ -1025,7 +1025,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lastopp_norsk_vertikal" translatesAutoresizingMaskIntoConstraints="NO" id="uVW-gJ-9oa">
-                                <rect key="frame" x="-160" y="40" width="640" height="654"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="327"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="uVW-gJ-9oa" secondAttribute="height" multiplier="320:327" id="b3J-Vu-cgc"/>
                                 </constraints>

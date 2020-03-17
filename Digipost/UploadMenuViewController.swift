@@ -41,8 +41,6 @@ class UploadMenuViewController: UIViewController, UITableViewDelegate {
             uploadImageController.showCameraCaptureInViewController(self)
         case 1:
             uploadImageController.showPhotoLibraryPickerInViewController(self)
-        case 2:
-            performSegue(withIdentifier: "uploadGuideSegue", sender: self)
         default:
             assert(false)
         }
