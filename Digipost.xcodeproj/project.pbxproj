@@ -2482,7 +2482,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 255;
+				CURRENT_PROJECT_VERSION = 259;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2521,7 +2521,7 @@
 				PRODUCT_MODULE_NAME = Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/www.difitest.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Digipost-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2544,7 +2544,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 255;
+				CURRENT_PROJECT_VERSION = 259;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
@@ -2583,7 +2583,7 @@
 				PRODUCT_MODULE_NAME = Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/www.difitest.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Digipost-Swift.h";
 				SWIFT_VERSION = 4.0;

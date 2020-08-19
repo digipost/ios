@@ -368,6 +368,7 @@ import AFNetworking
                 failure(APIError(error: error))
                 return 0
             }
+            return 0
         }()
 
         if (fileSize > maxFileSize) {
