@@ -17,9 +17,9 @@
 import UIKit
 import WebKit
 
-@objc class SingleUseWebViewController: UIViewController, UIWebViewDelegate {
+@objc class SingleUseWebViewController: UIViewController, WKUIDelegate {
     
-    var webView: UIWebView!
+    var webView: WKWebView!
     @objc var initUrl: String = ""
     @objc var viewTitle : String?
     
@@ -33,12 +33,12 @@ import WebKit
         self.navigationItem.leftBarButtonItem = newBackButton
         let myURL = URL(string: initUrl)
         let request = NSMutableURLRequest(url: myURL!)
-        webView.loadRequest(request as URLRequest)
+        webView.load(request as URLRequest)
     }
     
     override func loadView() {
-        webView = UIWebView(frame: .zero)
-        webView.delegate = self
+        webView = WKWebView(frame: .zero)
+        webView.uiDelegate = self
         view = webView
     }
     

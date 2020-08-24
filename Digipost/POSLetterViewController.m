@@ -45,6 +45,7 @@
 #import "POSLetterPopoverTableViewDataSourceAndDelegate.h"
 #import "POSLetterPopoverTableViewMobelObject.h"
 #import "UIBarButtonItem+DigipostBarButtonItems.h"
+#import <WebKit/WebKit.h>
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -52,10 +53,10 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 NSString *const kaskForhigherAuthenticationLevelSegue = @"askForhigherAuthenticationLevelSegue";
 NSString *const kinvoiceOptionsSegue = @"invoiceOptionsSegue";
 
-@interface POSLetterViewController () <SFSafariViewControllerDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate, SHCOAuthViewControllerDelegate>
+@interface POSLetterViewController () <SFSafariViewControllerDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate, SHCOAuthViewControllerDelegate, WKUIDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *informationBarButtonItem;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet WKWebView *webView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIView *shadowView;
@@ -278,8 +279,8 @@ CGFloat extraMetadataConstraintHeight = 0;
 {
     [super viewDidLayoutSubviews];
 
-    // Assuming self.webView is our UIWebView
-    // We go though all sub views of the UIWebView and set their backgroundColor to white
+    // Assuming self.webView is our WKWebView
+    // We go though all sub views of the WKWebView and set their backgroundColor to white
     UIView *v = self.webView;
     while (v) {
         if (self.attachment) {
@@ -291,9 +292,9 @@ CGFloat extraMetadataConstraintHeight = 0;
     }
 }
 
-#pragma mark - UIWebViewDelegate
+#pragma mark - WKUIDelegate
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void)didFinishNavigation:(WKWebView *)webView
 {
     self.progressView.alpha = 0.0;
     self.webView.alpha = 1.0;
@@ -303,22 +304,26 @@ CGFloat extraMetadataConstraintHeight = 0;
     [self.webView setAccessabilityLabelForFileType:self.attachment.fileType];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(WKWebView *)webView didFailNavigation:(NSError *)error
 {
     //    DDLogError(@"%@", [error localizedDescription]);
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
-    if ([[request.URL absoluteString] isEqualToString:@"about:blank"]) {
-        return YES;
+    if ([[navigationAction.request.URL absoluteString] isEqualToString:@"about:blank"]) {
+        decisionHandler(WKNavigationActionPolicyAllow);
+        return;
     } else if ([request.URL isFileURL]) {
-        return YES;
+        decisionHandler(WKNavigationActionPolicyAllow);
+        return;
     } else {
         [self openExternalLink: request.URL.absoluteString];
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
-    return NO;
+    decisionHandler(WKNavigationActionPolicyCancel);
+    return;
 }
 
 #pragma mark - UIGestureRecognizerDelegate

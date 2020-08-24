@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-import UIKit
+import WebKit
 
-extension UIWebView {
+extension WKWebKit {
     
     @objc func setAccessabilityLabelForFileType(_ filetype: String?){
         if let actualFileType = filetype as String? {

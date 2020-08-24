@@ -33,9 +33,9 @@ NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
 NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 Boolean tryToFillUsing1Password = false;
 
-@interface SHCOAuthViewController () <UIWebViewDelegate, NSURLConnectionDelegate>
+@interface SHCOAuthViewController () <WKUIDelegate, NSURLConnectionDelegate>
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (weak, nonatomic) IBOutlet WKWebView *webView;
 @property (copy, nonatomic) NSString *stateParameter;
 
 #if (ACCEPT_SELF_SIGNED_CERTIFICATES)
@@ -103,12 +103,12 @@ Boolean tryToFillUsing1Password = false;
     }
 }
 
-#pragma mark - UIWebViewDelegate
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+#pragma mark - WKUIDelegate
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler
 {
     // Trap requests to the URL used when OAuth authentication dialog finishes
-    if ([request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
-        NSDictionary *parameters = [request queryParameters];
+    if ([navigationAction.request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
+        NSDictionary *parameters = [navigationAction.request queryParameters];
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
             // Copy and reset the state parameter, as we're done checking its value for now
@@ -117,12 +117,14 @@ Boolean tryToFillUsing1Password = false;
             if ([state isEqualToString:currentState] == NO) {
                 // [Logger dpostLogError:@"State parameter returned from server differed from what client sent" location:@"Showing OAuth login screen" UI:@"User will get an error and be asked to try logging in again" cause:@"Server is broken or possible man in the middle attack"];
                 [self informUserThatOauthFailedThenDismissViewController];
-                return NO;
+                decisionHandler(WKNavigationActionPolicyCancel);
+                return;
             }
         } else {
             // [Logger dpostLogError:@"Could not find OAuth state-paramter in json sent from server" location:@"Shows a modal login view" UI:@"User will get an error message and asked to try logging in again" cause:@"Server has issues or something hijacked the web traffic from app"];
             [self informUserThatOauthFailedThenDismissViewController];
-            return NO;
+            decisionHandler(WKNavigationActionPolicyCancel);
+            return;
         }
         
         if (parameters[kOAuth2Code]) {
@@ -155,22 +157,26 @@ Boolean tryToFillUsing1Password = false;
             [self informUserThatOauthFailedThenDismissViewController];
         }
         
-        return NO;
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
     }
     
 #if (ACCEPT_SELF_SIGNED_CERTIFICATES)
     
     if (!self.isAuthenticated) {
-        self.failedURLRequest = request;
-        __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
+        self.failedURLRequest = navigationAction.request;
+        __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:navigationAction.request
                                                                                delegate:self];
     }
-    
-    return self.isAuthenticated;
+    // check again after request above was retried
+    if (!self.isAuthenticated) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        return;
+    }
     
 #endif
     
-    return YES;
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (void) remove1PasswordButtonIfNotNormalLoginScope {
@@ -201,7 +207,7 @@ Boolean tryToFillUsing1Password = false;
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(nonnull NSError *)error
 {
     // the -999 code is a code that happens every time oauth is done
     if (error.code != -999) {

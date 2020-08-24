@@ -16,7 +16,7 @@
 
 import Foundation
 import UIKit
-
+import WebKit
 
 
 extension POSLetterViewController {
@@ -47,7 +47,7 @@ extension POSLetterViewController {
         }
     }
     
-    @objc func addTapGestureRecognizersToWebView(_ webView: UIWebView) {
+    @objc func addTapGestureRecognizersToWebView(_ webView: WKWebView) {
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(POSLetterViewController.didSingleTapWebView))
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.numberOfTouchesRequired = 1
