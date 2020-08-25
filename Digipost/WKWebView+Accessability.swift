@@ -16,7 +16,7 @@
 
 import WebKit
 
-extension WKWebKit {
+extension WKWebView {
     
     @objc func setAccessabilityLabelForFileType(_ filetype: String?){
         if let actualFileType = filetype as String? {

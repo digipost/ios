@@ -314,11 +314,11 @@ CGFloat extraMetadataConstraintHeight = 0;
     if ([[navigationAction.request.URL absoluteString] isEqualToString:@"about:blank"]) {
         decisionHandler(WKNavigationActionPolicyAllow);
         return;
-    } else if ([request.URL isFileURL]) {
+    } else if ([navigationAction.request.URL isFileURL]) {
         decisionHandler(WKNavigationActionPolicyAllow);
         return;
     } else {
-        [self openExternalLink: request.URL.absoluteString];
+        [self openExternalLink: navigationAction.request.URL.absoluteString];
         decisionHandler(WKNavigationActionPolicyCancel);
         return;
     }
