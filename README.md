@@ -1,5 +1,7 @@
 # Digipost for iOS
 
+⚠️ Denne repoet er arkivert, og det er ikke lenger denne koden som driver iOS-appen til Digipost. ⚠️
+
 [![Digipost for iOS](https://i.imgur.com/vce3NJf.png)](http://itunes.apple.com/no/app/digipost/id441997544?mt=8&uo=4)
 
 Digipost for iOS er en app for iOS på iPhone, iPad og iPod Touch som gir tilgang til brukerens sikre digitale postkasse i Digipost. For å logge inn i appen trenger du en konto i Digipost, dette kan du opprette på [digipost.no](https://www.digipost.no/).
