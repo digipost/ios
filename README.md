@@ -1,6 +1,6 @@
 # Digipost for iOS
 
-⚠️ Denne repoet er arkivert, og det er ikke lenger denne koden som driver iOS-appen til Digipost. ⚠️
+⚠️ Dette repoet er arkivert, og det er ikke lenger denne koden som driver iOS-appen til Digipost. ⚠️
 
 [![Digipost for iOS](https://i.imgur.com/vce3NJf.png)](http://itunes.apple.com/no/app/digipost/id441997544?mt=8&uo=4)
 
